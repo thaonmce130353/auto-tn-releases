@@ -4,6 +4,7 @@
 
 | Phiên bản | Ngày | Cài lại? | Mã nguồn | Ghi chú |
 |---|---|---|---|---|
+| 1.0.7 | 2026-11-16 | Có | `6e1d4cd` | — |
 | 1.0.6 | 2026-11-16 | Có | `thủ công` | — |
 | 1.0.5 | 2026-11-16 | Có | `a140613` | stable version |
 | 1.0.4 | 2026-11-16 | Có | `c7ec88b` | Hộp Bản quyền gọn hơn; bảng điều khiển PC rộng 650–800px. |
