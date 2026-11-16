@@ -4,5 +4,6 @@
 
 | Phiên bản | Ngày | Cài lại? | Mã nguồn | Ghi chú |
 |---|---|---|---|---|
+| 1.0.5 | 2026-11-16 | Có | `a140613` | — |
 | 1.0.4 | 2026-11-16 | Có | `c7ec88b` | Hộp Bản quyền gọn hơn; bảng điều khiển PC rộng 650–800px. |
 | 1.0.3 | 2026-11-16 | Có | `38c2853` | Bản PC có bản quyền đầu tiên: nhập key trong tab ⚙️ Cài đặt. |
