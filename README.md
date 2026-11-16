@@ -1,5 +1,5 @@
-# Auto Tiên Nghịch — bản tải về cho PC
+# Auto Tiên Nghịch — bản tải về
 
-Tiện ích Chrome/Edge (nạp bằng "Load unpacked"). **Cần key bản quyền** để dùng; không có key thì tiện ích không làm gì.
+Trang hướng dẫn (iPhone + PC) và liên kết tải: **https://thaonmce130353.github.io/auto-tn-releases/**
 
-Tải file `tn-extension-<phiên bản>.zip` mới nhất ở mục [Releases](../../releases/latest), giải nén, rồi làm theo hướng dẫn mà người bán gửi kèm key.
+Tiện ích PC cần **key bản quyền** để dùng; không có key thì không làm gì. Tải trực tiếp bản mới nhất: [`tn-extension-latest.zip`](tn-extension-latest.zip). Danh sách phiên bản: [`VERSIONS.md`](VERSIONS.md).
