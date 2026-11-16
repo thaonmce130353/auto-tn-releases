@@ -68,18 +68,18 @@
 
   <section class="card" id="iphone">
     <h2>📱 Cài trên iPhone (Safari)</h2>
-    <p class="meta">Làm một lần khoảng 10 phút. Bạn cần cài app <b>Userscripts</b> (miễn phí trên App Store) để Safari chạy được công cụ.</p>
+    <p class="meta">Làm một lần khoảng 10 phút. Bạn cần cài app <b>Userscripts</b> (miễn phí trên App Store, có nút tải ngay ở bước 1) để Safari chạy được công cụ.</p>
     <h3>Cài lần đầu</h3>
     <ol>
-      <li><b>Cài app Userscripts</b> từ App Store. Sau đó vào <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: bật lên, và chọn <b>Cho phép</b> cho cả hai trang <code>tiennghich.joyplay.vn</code> và <code>tiennghich.acejoygame.com</code>.</li>
-      <li><b>Chọn thư mục lưu</b>: mở app Userscripts → bấm <b>Set Directory</b> → chọn một thư mục (ví dụ trong iCloud Drive hoặc "Trên iPhone").</li>
-      <li><b>Tạo phím tắt</b> trong app <b>Phím tắt (Shortcuts)</b>, đặt tên <b>Cập nhật Auto TN</b>, gồm 3 hành động theo thứ tự:
-        <ol type="a">
-          <li><b>Ask for Input</b> (kiểu Text), câu hỏi: <code>Nhập key</code>.</li>
-          <li><b>Get Contents of URL</b>: URL là <code>https://auto-tn-server.onrender.com/v1/script</code>, Method chọn <b>GET</b>. Thêm một Header: tên <code>Authorization</code>, giá trị là chữ <code>Bearer </code> (có dấu cách phía sau) rồi chèn biến <i>Provided Input</i>.</li>
-          <li><b>Save File</b>: nơi lưu là thư mục bạn chọn ở bước 2. Bật <b>Overwrite If File Exists</b>, tắt <b>Ask Where to Save</b>, đường dẫn con nhập <code>/tien-nghich-auto.user.js</code> (nhớ có đuôi <code>.js</code>).</li>
-        </ol></li>
-      <li><b>Chạy phím tắt</b> và nhập key của bạn. Lần đầu có thể chờ tới 1 phút vì máy chủ cần "thức dậy", cứ để yên.</li>
+      <li><b>Cài app Userscripts</b> (miễn phí) từ App Store:
+        <div class="dl"><a class="btn" href="https://apps.apple.com/app/userscripts/id1463298887" target="_blank" rel="noopener">⬇️ Mở Userscripts trên App Store</a></div>
+        Sau khi cài, vào <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: bật lên, và chọn <b>Cho phép</b> cho cả hai trang <code>tiennghich.joyplay.vn</code> và <code>tiennghich.acejoygame.com</code>.</li>
+      <li><b>Thư mục lưu</b>: mở app Userscripts và <b>giữ thư mục mặc định</b> của app (không cần đổi gì). Phím tắt ở bước sau lưu thẳng vào thư mục này. Nếu bạn tự chọn thư mục khác (<b>Set Directory</b>), nhớ đổi lại ở bước 3 như hướng dẫn bên dưới.</li>
+      <li><b>Thêm phím tắt có sẵn</b>, không cần tự tạo: bấm nút dưới đây, rồi bấm <b>Thêm phím tắt</b> (Add Shortcut) trong app <b>Phím tắt (Shortcuts)</b>.
+        <div class="dl"><a class="btn" href="https://www.icloud.com/shortcuts/e2218f7ff0134be7849c6cf521bb2d77" target="_blank" rel="noopener">⚡ Thêm phím tắt Cập nhật Auto TN</a></div>
+        Sau đó mở phím tắt vừa thêm (chạm vào dấu <b>…</b> trên phím tắt) và làm <b>một việc duy nhất</b>: ở <b>câu hỏi đầu tiên</b> (Ask for Input), thay phần <b>Default Answer</b> (trả lời mặc định) bằng <b>key của bạn</b>. Bấm <b>Xong</b>.
+        <br>Chỉ khi bạn đã chọn thư mục khác ở bước 2: ở hành động <b>Save File</b>, đổi nơi lưu thành thư mục của bạn.</li>
+      <li><b>Chạy phím tắt</b> (key đã điền sẵn, chỉ cần bấm <b>Xong</b>). Lần đầu có thể chờ tới 1 phút vì máy chủ cần "thức dậy", cứ để yên.</li>
       <li><b>Đóng hẳn Safari</b> (vuốt tắt hẳn app), mở lại, vào <code>tiennghich.joyplay.vn/play</code> và đăng nhập nhân vật. Nút ⚡ sẽ hiện trên màn hình.</li>
       <li>Chạm ⚡ → tab <b>⚙️ Cài đặt</b> → ô <b>Bản quyền</b> → dán key → <b>Kích hoạt</b>.</li>
     </ol>
