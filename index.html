@@ -31,65 +31,86 @@
 <body>
 <main>
   <h1>⚡ Auto Tiên Nghịch</h1>
-  <p class="sub">Hướng dẫn cài đặt cho iPhone và máy tính. Bạn cần một <b>key bản quyền</b> dạng <code>TN-XXXXX-XXXXX-XXXXX-XXXXX</code> (người bán gửi sau khi thanh toán).</p>
-  <nav class="tabs"><a href="#iphone">📱 iPhone</a><a href="#pc">💻 Máy tính (PC)</a></nav>
+  <p class="sub">Công cụ tự động làm nhiệm vụ trong game Tiên Nghịch, dùng được trên iPhone và máy tính. Chọn thiết bị của bạn ở dưới và làm theo từng bước.</p>
+
+  <div class="card">
+    <h2>📋 Chuẩn bị</h2>
+    <ul>
+      <li><b>Key bản quyền</b> dạng <code>TN-XXXXX-XXXXX-XXXXX-XXXXX</code>. Người bán gửi cho bạn sau khi thanh toán.</li>
+      <li>Một <b>tài khoản game Tiên Nghịch</b> đã có nhân vật.</li>
+      <li>Đang dùng <b>iPhone (Safari)</b> hoặc <b>máy tính (Chrome hoặc Edge)</b>.</li>
+    </ul>
+  </div>
+
+  <nav class="tabs"><a href="#pc">💻 Máy tính (PC)</a><a href="#iphone">📱 iPhone</a></nav>
 
   <section class="card" id="pc">
-    <h2>💻 Máy tính (Chrome / Edge)</h2>
-    <div class="dl"><a class="btn" id="dl-btn" href="tn-extension-latest.zip">⬇️ Tải tiện ích PC (.zip)</a></div>
+    <h2>💻 Cài trên máy tính (Chrome hoặc Edge)</h2>
+    <div class="dl"><a class="btn" id="dl-btn" href="tn-extension-latest.zip">⬇️ Tải về tiện ích cho máy tính</a></div>
     <div class="meta" id="dl-meta">Luôn là bản mới nhất.</div>
 
-    <h3>Cài lần đầu</h3>
+    <h3>Cài lần đầu (khoảng 3 phút)</h3>
     <ol>
-      <li>Tải file zip ở trên, <b>giải nén</b> vào một thư mục cố định (ví dụ <code>D:\AutoTN</code>). Không xóa hoặc di chuyển thư mục này sau khi cài.</li>
-      <li>Chrome: mở <code>chrome://extensions</code> (Edge: <code>edge://extensions</code>). Bật <b>Chế độ nhà phát triển</b> (Developer mode) ở góc trên.</li>
-      <li>Bấm <b>Tải tiện ích đã giải nén</b> (Load unpacked) và chọn thư mục vừa giải nén.</li>
-      <li>Mở <code>tiennghich.joyplay.vn/play</code>, đăng nhập nhân vật. Bảng điều khiển hiện ở góc trên bên trái.</li>
-      <li>Vào tab <b>⚙️ Cài đặt</b> → ô <b>🔑 Bản quyền</b> → dán key → <b>Kích hoạt</b>. Thấy <span class="ok">✅ Đã kích hoạt</span> là xong.</li>
+      <li><b>Tải file zip</b> ở nút trên, rồi <b>giải nén</b> (chuột phải → Extract All / Giải nén) vào một thư mục cố định, ví dụ <code>D:\AutoTN</code>.<br><span class="meta">Đừng xóa hoặc đổi tên thư mục này sau khi cài, nếu không tiện ích sẽ biến mất.</span></li>
+      <li>Mở trang quản lý tiện ích: gõ <code>chrome://extensions</code> vào thanh địa chỉ (Edge thì gõ <code>edge://extensions</code>) rồi nhấn Enter.</li>
+      <li>Bật công tắc <b>Developer mode</b> (Chế độ nhà phát triển) ở góc trên bên phải.</li>
+      <li>Bấm <b>Load unpacked</b> (Tải tiện ích đã giải nén) và chọn thư mục bạn vừa giải nén ở bước 1.</li>
+      <li>Mở game tại <code>tiennghich.joyplay.vn/play</code> và đăng nhập nhân vật. Bảng điều khiển ⚡ sẽ hiện ở góc trên bên trái.</li>
+      <li>Trong bảng điều khiển, chọn tab <b>⚙️ Cài đặt</b> → ô <b>🔑 Bản quyền</b> → dán key → bấm <b>Kích hoạt</b>. Khi thấy <span class="ok">✅ Đã kích hoạt</span> là xong.</li>
     </ol>
 
-    <h3>Cập nhật</h3>
+    <h3>Cập nhật sau này</h3>
     <ul>
-      <li><b>Tính năng mới tự cập nhật</b> qua máy chủ, bạn không phải tải lại gì. Chỉ cần tải lại trang game.</li>
-      <li>Chỉ khi bản mới ghi <b>Cài lại = Có</b> (bảng bên dưới) mới cần tải zip mới: giải nén đè vào đúng thư mục cũ, mở <code>chrome://extensions</code> và bấm biểu tượng 🔄 trên tiện ích, rồi tải lại trang game.</li>
+      <li><b>Tính năng mới tự cập nhật.</b> Bạn chỉ cần tải lại trang game, không phải tải gì thêm.</li>
+      <li>Chỉ khi bảng phiên bản ở cuối trang ghi <b>Cài lại = Có</b> thì bạn mới cần tải file zip mới: giải nén đè vào thư mục cũ, mở lại trang <code>chrome://extensions</code>, bấm biểu tượng 🔄 trên tiện ích, rồi tải lại trang game.</li>
     </ul>
   </section>
 
   <section class="card" id="iphone">
-    <h2>📱 iPhone (Safari)</h2>
-    <p><b>Bạn cần:</b> iPhone, app <b>Userscripts</b> (App Store, miễn phí), tài khoản game, và key.</p>
+    <h2>📱 Cài trên iPhone (Safari)</h2>
+    <p class="meta">Làm một lần khoảng 10 phút. Bạn cần cài app <b>Userscripts</b> (miễn phí trên App Store) để Safari chạy được công cụ.</p>
     <h3>Cài lần đầu</h3>
     <ol>
-      <li>Cài app <b>Userscripts</b>. Vào <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: bật, và chọn <b>Cho phép</b> cho cả hai trang <code>tiennghich.joyplay.vn</code> và <code>tiennghich.acejoygame.com</code>.</li>
-      <li>Mở app Userscripts → <b>Set Directory</b> → chọn một thư mục (ví dụ trong iCloud Drive hoặc "Trên iPhone").</li>
-      <li>Tạo phím tắt (Shortcuts) tên <b>Cập nhật Auto TN</b> với các bước:
+      <li><b>Cài app Userscripts</b> từ App Store. Sau đó vào <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: bật lên, và chọn <b>Cho phép</b> cho cả hai trang <code>tiennghich.joyplay.vn</code> và <code>tiennghich.acejoygame.com</code>.</li>
+      <li><b>Chọn thư mục lưu</b>: mở app Userscripts → bấm <b>Set Directory</b> → chọn một thư mục (ví dụ trong iCloud Drive hoặc "Trên iPhone").</li>
+      <li><b>Tạo phím tắt</b> trong app <b>Phím tắt (Shortcuts)</b>, đặt tên <b>Cập nhật Auto TN</b>, gồm 3 hành động theo thứ tự:
         <ol type="a">
-          <li><b>Ask for Input</b> (Text), câu hỏi: <code>Nhập key</code>.</li>
-          <li><b>Get Contents of URL</b>: URL <code>https://auto-tn-server.onrender.com/v1/script</code>, Method <b>GET</b>, thêm Header <code>Authorization</code> = <code>Bearer </code> + <i>Provided Input</i> (có dấu cách sau chữ Bearer).</li>
-          <li><b>Save File</b>: đích là thư mục Userscripts ở bước 2, bật <b>Overwrite If File Exists</b>, tắt <b>Ask Where to Save</b>, đường dẫn con <code>/tien-nghich-auto.user.js</code> (nhớ đuôi <code>.js</code>).</li>
+          <li><b>Ask for Input</b> (kiểu Text), câu hỏi: <code>Nhập key</code>.</li>
+          <li><b>Get Contents of URL</b>: URL là <code>https://auto-tn-server.onrender.com/v1/script</code>, Method chọn <b>GET</b>. Thêm một Header: tên <code>Authorization</code>, giá trị là chữ <code>Bearer </code> (có dấu cách phía sau) rồi chèn biến <i>Provided Input</i>.</li>
+          <li><b>Save File</b>: nơi lưu là thư mục bạn chọn ở bước 2. Bật <b>Overwrite If File Exists</b>, tắt <b>Ask Where to Save</b>, đường dẫn con nhập <code>/tien-nghich-auto.user.js</code> (nhớ có đuôi <code>.js</code>).</li>
         </ol></li>
-      <li>Chạy phím tắt, nhập key. Lần đầu máy chủ miễn phí có thể mất khoảng 1 phút để thức dậy, cứ chờ.</li>
-      <li>Đóng hẳn Safari, mở lại, vào <code>tiennghich.joyplay.vn/play</code> và đăng nhập nhân vật. Nút ⚡ xuất hiện.</li>
+      <li><b>Chạy phím tắt</b> và nhập key của bạn. Lần đầu có thể chờ tới 1 phút vì máy chủ cần "thức dậy", cứ để yên.</li>
+      <li><b>Đóng hẳn Safari</b> (vuốt tắt hẳn app), mở lại, vào <code>tiennghich.joyplay.vn/play</code> và đăng nhập nhân vật. Nút ⚡ sẽ hiện trên màn hình.</li>
       <li>Chạm ⚡ → tab <b>⚙️ Cài đặt</b> → ô <b>Bản quyền</b> → dán key → <b>Kích hoạt</b>.</li>
     </ol>
-    <h3>Cập nhật</h3>
-    <p>Tính năng mới tự cập nhật qua máy chủ. Khi có bản vỏ mới: chạy lại phím tắt, đóng hẳn Safari, mở lại.</p>
-    <div class="note">Giữ iPhone mở khóa và Safari ở phía trước khi chạy Auto (Safari tạm dừng khi khóa màn hình).</div>
+    <h3>Cập nhật sau này</h3>
+    <p><b>Tính năng mới tự cập nhật.</b> Khi người bán báo có bản mới của ứng dụng: chạy lại phím tắt, đóng hẳn Safari rồi mở lại.</p>
+    <div class="note"><b>Quan trọng:</b> khi Auto đang chạy, hãy giữ iPhone <b>không khóa màn hình</b> và để Safari ở phía trước. Safari tự dừng khi màn hình khóa, nên Auto cũng dừng theo. Muốn chạy lâu: vào <i>Cài đặt → Màn hình &amp; Độ sáng → Tự động khóa → Không bao giờ</i> và cắm sạc.</div>
   </section>
 
   <section class="card">
-    <h2>ℹ️ Lưu ý chung</h2>
+    <h2>🔧 Gặp lỗi?</h2>
     <ul>
-      <li>Key gắn với <b>nhân vật game đầu tiên</b> kích hoạt và dùng tối đa <b>2 thiết bị</b> (mỗi lúc chỉ 1 thiết bị chạy; thiết bị mới kích hoạt sẽ làm thiết bị cũ dừng). Key dùng được cho iPhone, PC hoặc cả hai tùy gói bạn mua.</li>
-      <li>Xóa dữ liệu trình duyệt được tính là thiết bị mới. Cần đổi nhân vật hoặc reset key thì liên hệ người bán.</li>
-      <li>Cần có mạng để khởi động Auto (máy chủ miễn phí có thể mất tới 1 phút để thức dậy lúc đầu).</li>
-      <li>Dùng công cụ tự động có thể vi phạm điều khoản game và có rủi ro bị khóa tài khoản; bạn tự chịu trách nhiệm.</li>
+      <li><b>Không thấy bảng điều khiển ⚡:</b> tải lại trang game. Trên máy tính, kiểm tra tiện ích đang bật ở trang <code>chrome://extensions</code>. Trên iPhone, kiểm tra app Userscripts đã được cho phép cả hai trang game.</li>
+      <li><b>Báo key không dùng được hoặc "tài khoản khác":</b> mỗi key chỉ dùng cho một nhân vật game. Cần đổi nhân vật hoặc đổi máy thì nhắn cho người bán để đặt lại key.</li>
+      <li><b>Chờ lâu lúc kích hoạt hoặc bấm bắt đầu:</b> máy chủ miễn phí có thể mất tới 1 phút để thức dậy. Đợi một chút rồi thử lại.</li>
+      <li><b>Vẫn không được:</b> chụp màn hình lỗi và gửi cho người bán.</li>
     </ul>
   </section>
 
   <section class="card">
-    <h2>🗂 Các phiên bản tiện ích PC</h2>
-    <p class="meta">"Cài lại = Có" nghĩa là phải tải zip mới. "Không" nghĩa là tính năng tự cập nhật.</p>
+    <h2>ℹ️ Cần biết</h2>
+    <ul>
+      <li>Mỗi key gắn với <b>nhân vật game đầu tiên</b> kích hoạt, và dùng tối đa <b>2 thiết bị</b>. Mỗi lúc chỉ 1 thiết bị chạy được: kích hoạt thêm máy mới thì máy cũ sẽ dừng.</li>
+      <li>Key dùng cho iPhone, máy tính hoặc cả hai, tùy gói bạn mua.</li>
+      <li>Xóa dữ liệu trình duyệt sẽ bị tính là một thiết bị mới.</li>
+      <li>Công cụ tự động có thể vi phạm điều khoản của game và có nguy cơ bị khóa tài khoản. Bạn tự chịu trách nhiệm khi sử dụng.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>🗂 Các phiên bản tiện ích máy tính</h2>
+    <p class="meta"><b>Cài lại = Có:</b> phải tải zip mới. <b>Không:</b> tính năng tự cập nhật, bạn không cần làm gì.</p>
     <div id="versions" class="meta">Đang tải…</div>
   </section>
 </main>
@@ -101,8 +122,8 @@
     });
     if (!rows.length) throw 0;
     var top = rows[0];
-    document.getElementById('dl-btn').textContent = '⬇️ Tải tiện ích PC v' + top.ver + ' (.zip)';
-    document.getElementById('dl-meta').textContent = 'Bản mới nhất: v' + top.ver + ' · ' + top.date + (top.re === 'Có' ? ' · cần cài lại tiện ích' : '');
+    document.getElementById('dl-btn').textContent = '⬇️ Tải về tiện ích cho máy tính (v' + top.ver + ')';
+    document.getElementById('dl-meta').textContent = 'Bản mới nhất: v' + top.ver + ' · ' + top.date + (top.re === 'Có' ? ' · bản này cần tải lại zip' : '');
     var box = document.getElementById('versions'); box.textContent = '';
     rows.forEach(function (r) {
       var d = document.createElement('div'); d.style.margin = '6px 0';
