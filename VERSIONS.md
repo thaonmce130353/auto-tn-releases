@@ -4,6 +4,7 @@
 
 | Phiên bản | Ngày | Cài lại? | Mã nguồn | Ghi chú |
 |---|---|---|---|---|
+| 1.0.11 | 2026-11-16 | Có | `0c0e323` | Enhance user experience |
 | 1.0.10 | 2026-11-16 | Có | `5c9baf1` | Enhance iPhone Hub UI |
 | 1.0.9 | 2026-11-16 | Có | `019a23c` | Live Version |
 | 1.0.8 | 2026-11-16 | Có | `a60d378` | Stable version |
