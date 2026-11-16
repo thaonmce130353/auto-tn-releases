@@ -102,7 +102,7 @@
     rows.forEach(function (r) {
       var d = document.createElement('div'); d.style.margin = '6px 0';
       var a = document.createElement('a'); a.href = 'tn-extension-' + r.ver + '.zip'; a.textContent = 'v' + r.ver;
-      d.append(a, ' · ' + r.date + ' · Cài lại: ' + r.re + (r.note ? ' · ' + r.note : '')); box.append(d);
+      d.append(a, ' · ' + r.date + ' · Cài lại: ' + r.re + (r.note && r.note !== '—' ? ' · ' + r.note : '')); box.append(d);
     });
   }).catch(function () { document.getElementById('versions').textContent = 'Không đọc được danh sách phiên bản.'; });
 })();
