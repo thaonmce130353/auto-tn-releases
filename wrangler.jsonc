@@ -1,0 +1,7 @@
+{
+  // Cloudflare Workers static-assets site: the repo root IS the site (guide page + buyer zips). No Worker code.
+  // Every push to main (the admin page commits a new zip + VERSIONS.md on each release) rebuilds and redeploys it.
+  "name": "auto-tn-releases",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./" }
+}
