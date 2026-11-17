@@ -13,6 +13,10 @@
   "r2_buckets": [
     { "binding": "ZIPS", "bucket_name": "auto-tn-zips" }
   ],
+  // Workers Logs (dashboard → Worker → Logs): console.log/error lines and invocation logs; free-plan limits apply (see the Cloudflare dashboard).
+  "observability": { "enabled": true },
+  // Workers Logs (dashboard → Worker → Logs): console.log/error lines and invocation logs; free-plan limits apply (see the Cloudflare dashboard).
+  "observability": { "enabled": true },
   // Preview builds (PR checks) get NO bindings or variables on purpose: previews must never touch production data. Wrangler requires the block, even empty.
   "previews": {}
 }
