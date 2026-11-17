@@ -12,5 +12,7 @@
   // Create the bucket first: dashboard → R2 → Create bucket "auto-tn-zips" (the admin Worker binds the same bucket).
   "r2_buckets": [
     { "binding": "ZIPS", "bucket_name": "auto-tn-zips" }
-  ]
+  ],
+  // Preview builds (PR checks) get NO bindings or variables on purpose: previews must never touch production data. Wrangler requires the block, even empty.
+  "previews": {}
 }
