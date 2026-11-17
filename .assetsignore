@@ -2,4 +2,7 @@
 .git
 .assetsignore
 wrangler.jsonc
+worker.mjs
+test
 README.md
+VERSIONS.md

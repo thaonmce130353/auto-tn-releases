@@ -1,7 +1,3 @@
-# The latest zip and the version list change on every release: always revalidate.
-/tn-extension-latest.zip
-  Cache-Control: no-cache
-/VERSIONS.md
-  Cache-Control: no-cache
+# The guide page changes with releases: always revalidate. (The zips and VERSIONS.md come from R2 through worker.mjs with their own headers.)
 /index.html
   Cache-Control: no-cache

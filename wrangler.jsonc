@@ -1,7 +1,16 @@
 {
-  // Cloudflare Workers static-assets site: the repo root IS the site (guide page + buyer zips). No Worker code.
-  // Every push to main (the admin page commits a new zip + VERSIONS.md on each release) rebuilds and redeploys it.
+  // Buyer site on Cloudflare Workers: the repo root is the static site (guide page, icons); worker.mjs serves the PC zips and
+  // VERSIONS.md from the R2 bucket that the admin page fills on every release. Every push to main rebuilds and redeploys it.
   "name": "auto-tn-releases",
+  "main": "worker.mjs",
   "compatibility_date": "2026-11-01",
-  "assets": { "directory": "./" }
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": ["/tn-extension-*", "/VERSIONS.md"]
+  },
+  // Create the bucket first: dashboard → R2 → Create bucket "auto-tn-zips" (the admin Worker binds the same bucket).
+  "r2_buckets": [
+    { "binding": "ZIPS", "bucket_name": "auto-tn-zips" }
+  ]
 }
