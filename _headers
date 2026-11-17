@@ -1,0 +1,7 @@
+# The latest zip and the version list change on every release: always revalidate.
+/tn-extension-latest.zip
+  Cache-Control: no-cache
+/VERSIONS.md
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
