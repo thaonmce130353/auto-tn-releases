@@ -73,7 +73,7 @@
     <ol>
       <li><b>Cài app Userscripts</b> (miễn phí) từ App Store:
         <div class="dl"><a class="btn" href="https://apps.apple.com/app/userscripts/id1463298887" target="_blank" rel="noopener">⬇️ Mở Userscripts trên App Store</a></div>
-        Sau khi cài, vào <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: bật lên, và chọn <b>Cho phép</b> cho cả hai trang <code>tiennghich.joyplay.vn</code> và <code>tiennghich.acejoygame.com</code>.</li>
+        Sau khi cài, vào <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: bật <b>Cho phép phần mở rộng</b>, rồi ở mục <b>Quyền</b> chọn <b>Cho phép</b> cho <b>cả hai</b> dòng: <code>tiennghich.joyplay.vn</code> và <b>Các trang web khác</b>. Game chạy trong một khung thuộc tên miền thứ hai nên iPhone chỉ cấp quyền cho nó qua dòng <b>Các trang web khác</b> (xem giải thích ở mục <i>Cần biết</i> bên dưới). Dòng <code>greasyfork.org</code> để nguyên.</li>
       <li><b>Thư mục lưu</b>: mở app Userscripts và <b>giữ thư mục mặc định</b> của app (không cần đổi gì). Phím tắt ở bước sau lưu thẳng vào thư mục này. Nếu bạn tự chọn thư mục khác (<b>Set Directory</b>), nhớ đổi lại ở bước 3 như hướng dẫn bên dưới.</li>
       <li><b>Thêm phím tắt có sẵn</b>, không cần tự tạo: bấm nút dưới đây, rồi bấm <b>Thêm phím tắt</b> (Add Shortcut) trong app <b>Phím tắt (Shortcuts)</b>.
         <div class="dl"><a class="btn" href="https://www.icloud.com/shortcuts/f9499b5bd6f24269b077b04e63852074" target="_blank" rel="noopener">⚡ Thêm phím tắt Cập nhật Auto TN</a></div>
@@ -91,7 +91,7 @@
   <section class="card">
     <h2>🔧 Gặp lỗi?</h2>
     <ul>
-      <li><b>Không thấy bảng điều khiển ⚡:</b> tải lại trang game. Trên máy tính, kiểm tra tiện ích đang bật ở trang <code>chrome://extensions</code>. Trên iPhone, kiểm tra app Userscripts đã được cho phép cả hai trang game.</li>
+      <li><b>Không thấy bảng điều khiển ⚡:</b> tải lại trang game. Trên máy tính, kiểm tra tiện ích đang bật ở trang <code>chrome://extensions</code>. Trên iPhone, kiểm tra <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: <code>tiennghich.joyplay.vn</code> và <b>Các trang web khác</b> đều phải là <b>Cho phép</b>.</li>
       <li><b>Báo key không dùng được hoặc "tài khoản khác":</b> mỗi key chỉ dùng cho một nhân vật game. Cần đổi nhân vật hoặc đổi máy thì nhắn cho người bán để đặt lại key.</li>
       <li><b>Vẫn không được:</b> chụp màn hình lỗi và gửi cho người bán.</li>
     </ul>
@@ -103,6 +103,7 @@
       <li>Mỗi key gắn với <b>nhân vật game đầu tiên</b> kích hoạt, và dùng tối đa <b>2 thiết bị</b>. Mỗi lúc chỉ 1 thiết bị chạy được: kích hoạt thêm máy mới thì máy cũ sẽ dừng.</li>
       <li>Key dùng cho iPhone, máy tính hoặc cả hai, tùy gói bạn mua.</li>
       <li>Xóa dữ liệu trình duyệt sẽ bị tính là một thiết bị mới.</li>
+      <li><b>Vì sao trên iPhone phải cho phép "Các trang web khác"?</b> Màn hình game không nằm trên <code>tiennghich.joyplay.vn</code> mà nằm trong một khung tải từ tên miền thứ hai là <code>tiennghich.acejoygame.com</code>, và công cụ phải chạy trong khung đó. iPhone chỉ liệt kê riêng những trang bạn mở trực tiếp, nên tên miền thứ hai không có dòng riêng và chỉ cấp quyền được qua dòng <b>Các trang web khác</b>. Công cụ chỉ khai báo chạy trên hai tên miền game (mở file trong app Userscripts để xem hai dòng <code>@match</code>), nên không chạy trên trang khác. Đây là quyền của chính tiện ích Userscripts (mã nguồn mở), không riêng của công cụ này. Khi không chơi, bạn có thể chuyển dòng đó về <b>Từ chối</b> và bật lại khi cần.</li>
       <li>Công cụ tự động có thể vi phạm điều khoản của game và có nguy cơ bị khóa tài khoản. Bạn tự chịu trách nhiệm khi sử dụng.</li>
     </ul>
   </section>
