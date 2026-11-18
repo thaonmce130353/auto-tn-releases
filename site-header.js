@@ -1,11 +1,12 @@
 // Shared header for every page of the buyer site: one source, so the landing page and the install guide always match.
 (function () {
-  var path = location.pathname.replace(/index\.html$/, '');
+  // Cloudflare may serve the guide as /huong-dan or /huong-dan.html: accept both.
+  var onGuide = function () { return window.__tnGuide === true || /^\/huong-dan(\.html)?\/?$/.test(location.pathname); };
   var links = [
-    ['/', 'Giới thiệu', path === '/'],
-    ['/#tinh-nang', 'Tính năng', false],
-    ['/#bang-gia', 'Mua key', false],
-    ['/huong-dan.html', 'Hướng dẫn cài đặt', path === '/huong-dan.html']
+    ['/', 'Giới thiệu'],
+    ['/#tinh-nang', 'Tính năng'],
+    ['/#bang-gia', 'Mua key'],
+    ['/huong-dan.html', 'Hướng dẫn cài đặt']
   ];
   var css = document.createElement('style');
   css.textContent =
@@ -27,8 +28,26 @@
   brand.append(ic, nm);
   var nav = document.createElement('nav'); nav.setAttribute('aria-label', 'Menu');
   links.forEach(function (l) {
-    var a = document.createElement('a'); a.href = l[0]; a.textContent = l[1]; if (l[2]) a.className = 'on'; nav.appendChild(a);
+    var a = document.createElement('a'); a.href = l[0]; a.textContent = l[1]; nav.appendChild(a);
   });
   inner.append(brand, nav); h.appendChild(inner);
   document.body.insertBefore(h, document.body.firstChild);
+  // Highlight: the guide page, or on the landing page the section that is currently at the top (scroll spy).
+  var anchors = nav.querySelectorAll('a');
+  function sync() {
+    var idx = 0;
+    if (onGuide()) idx = 3;
+    else {
+      var f = document.getElementById('tinh-nang'), b = document.getElementById('bang-gia');
+      var y = window.pageYOffset + 140;
+      if (b && y >= b.getBoundingClientRect().top + window.pageYOffset) idx = 2;
+      else if (f && y >= f.getBoundingClientRect().top + window.pageYOffset) idx = 1;
+    }
+    for (var i = 0; i < anchors.length; i++) anchors[i].className = i === idx ? 'on' : '';
+  }
+  window.tnNavSync = sync;
+  window.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('hashchange', sync);
+  window.addEventListener('load', sync);
+  sync();
 })();
