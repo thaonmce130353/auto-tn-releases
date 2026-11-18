@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hướng dẫn cài đặt — Auto Tiên Nghịch</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1e1e2e">
+<style>
+  :root { color-scheme: dark; --bg:#1e1e2e; --card:#27273a; --txt:#cdd6f4; --dim:#9399b2; --acc:#cba6f7; --ok:#a6e3a1; --warn:#f9e2af; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:20px 16px 60px; }
+  h1 { font-size:24px; margin:8px 0 4px; } h2 { font-size:20px; color:var(--acc); margin:0 0 10px; } h3 { font-size:16px; margin:18px 0 6px; }
+  .sub { color:var(--dim); margin:0 0 18px; }
+  .card { background:var(--card); border-radius:12px; padding:16px; margin:14px 0; }
+  .tabs { display:flex; gap:8px; margin:14px 0 0; }
+  .tabs a { flex:1; text-align:center; padding:12px 8px; border-radius:10px; background:var(--card); color:var(--txt); text-decoration:none; font-weight:600; border:1px solid transparent; }
+  .tabs a:hover, .tabs a:focus { border-color:var(--acc); }
+  .btn { display:inline-block; background:var(--acc); color:#1e1e2e; font-weight:700; padding:12px 18px; border-radius:10px; text-decoration:none; }
+  .dl { margin:10px 0 4px; } .meta { color:var(--dim); font-size:14px; }
+  ol, ul { padding-left:22px; margin:6px 0; } li { margin:5px 0; }
+  code { background:#11111b; padding:1px 6px; border-radius:5px; font-size:14px; overflow-wrap:anywhere; }
+  .note { border-left:3px solid var(--warn); padding:6px 12px; background:#2b2a22; border-radius:0 8px 8px 0; margin:12px 0; }
+  .ok { color:var(--ok); } a { color:var(--acc); }
+</style>
+</head>
+<body>
+<script src="site-header.js"></script>
+<main>
+  <h1>📖 Hướng dẫn cài đặt</h1>
+  <p class="sub">Công cụ tự động làm nhiệm vụ trong game Tiên Nghịch, dùng được trên iPhone và máy tính. Chọn thiết bị của bạn ở dưới và làm theo từng bước.</p>
+
+  <div class="card">
+    <h2>📋 Chuẩn bị</h2>
+    <ul>
+      <li><b>Key bản quyền</b> dạng <code>TN-XXXXX-XXXXX-XXXXX-XXXXX</code>. Người bán gửi cho bạn sau khi thanh toán.</li>
+      <li>Một <b>tài khoản game Tiên Nghịch</b> đã có nhân vật.</li>
+      <li>Đang dùng <b>iPhone (Safari)</b> hoặc <b>máy tính (Chrome hoặc Edge)</b>.</li>
+    </ul>
+  </div>
+
+  <nav class="tabs"><a href="#pc">💻 Máy tính (PC)</a><a href="#iphone">📱 iPhone</a></nav>
+
+  <section class="card" id="pc">
+    <h2>💻 Cài trên máy tính (Chrome hoặc Edge)</h2>
+    <div class="dl"><a class="btn" id="dl-btn" href="tn-extension-latest.zip">⬇️ Tải về tiện ích cho máy tính</a></div>
+    <div class="meta" id="dl-meta">Luôn là bản mới nhất.</div>
+
+    <h3>Cài lần đầu (khoảng 3 phút)</h3>
+    <ol>
+      <li><b>Tải file zip</b> ở nút trên, rồi <b>giải nén</b> (chuột phải → Extract All / Giải nén) vào một thư mục cố định, ví dụ <code>D:\AutoTN</code>.<br><span class="meta">Đừng xóa hoặc đổi tên thư mục này sau khi cài, nếu không tiện ích sẽ biến mất.</span></li>
+      <li>Mở trang quản lý tiện ích: gõ <code>chrome://extensions</code> vào thanh địa chỉ (Edge thì gõ <code>edge://extensions</code>) rồi nhấn Enter.</li>
+      <li>Bật công tắc <b>Developer mode</b> (Chế độ nhà phát triển) ở góc trên bên phải.</li>
+      <li>Bấm <b>Load unpacked</b> (Tải tiện ích đã giải nén) và chọn thư mục bạn vừa giải nén ở bước 1.</li>
+      <li>Mở game tại <code>tiennghich.joyplay.vn/play</code> và đăng nhập nhân vật. Bảng điều khiển ⚡ sẽ hiện ở góc trên bên trái.</li>
+      <li>Trong bảng điều khiển, chọn tab <b>⚙️ Cài đặt</b> → ô <b>🔑 Bản quyền</b> → dán key → bấm <b>Kích hoạt</b>. Khi thấy <span class="ok">✅ Đã kích hoạt</span> là xong.</li>
+    </ol>
+
+    <h3>Cập nhật sau này</h3>
+    <ul>
+      <li><b>Tính năng mới tự cập nhật.</b> Bạn chỉ cần tải lại trang game, không phải tải gì thêm.</li>
+      <li>Chỉ khi bảng phiên bản ở cuối trang ghi <b>Cài lại = Có</b> thì bạn mới cần tải file zip mới: giải nén đè vào thư mục cũ, mở lại trang <code>chrome://extensions</code>, bấm biểu tượng 🔄 trên tiện ích, rồi tải lại trang game.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="iphone">
+    <h2>📱 Cài trên iPhone (Safari)</h2>
+    <p class="meta">Làm một lần khoảng 10 phút. Bạn cần cài app <b>Userscripts</b> (miễn phí trên App Store, có nút tải ngay ở bước 1) để Safari chạy được công cụ.</p>
+    <h3>Cài lần đầu</h3>
+    <ol>
+      <li><b>Cài app Userscripts</b> (miễn phí) từ App Store:
+        <div class="dl"><a class="btn" href="https://apps.apple.com/app/userscripts/id1463298887" target="_blank" rel="noopener">⬇️ Mở Userscripts trên App Store</a></div>
+        Sau khi cài, vào <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: bật <b>Cho phép phần mở rộng</b>, rồi ở mục <b>Quyền</b> chọn <b>Cho phép</b> cho <b>cả hai</b> dòng: <code>tiennghich.joyplay.vn</code> và <b>Các trang web khác</b>. Game chạy trong một khung thuộc tên miền thứ hai nên iPhone chỉ cấp quyền cho nó qua dòng <b>Các trang web khác</b> (xem giải thích ở mục <i>Cần biết</i> bên dưới). Dòng <code>greasyfork.org</code> để nguyên.</li>
+      <li><b>Thư mục lưu</b>: mở app Userscripts và <b>giữ thư mục mặc định</b> của app (không cần đổi gì). Phím tắt ở bước sau lưu thẳng vào thư mục này. Nếu bạn tự chọn thư mục khác (<b>Set Directory</b>), nhớ đổi lại ở bước 3 như hướng dẫn bên dưới.</li>
+      <li><b>Thêm phím tắt có sẵn</b>, không cần tự tạo: bấm nút dưới đây, rồi bấm <b>Thêm phím tắt</b> (Add Shortcut) trong app <b>Phím tắt (Shortcuts)</b>.
+        <div class="dl"><a class="btn" href="https://www.icloud.com/shortcuts/f9499b5bd6f24269b077b04e63852074" target="_blank" rel="noopener">⚡ Thêm phím tắt Cập nhật Auto TN</a></div>
+        Sau đó mở phím tắt vừa thêm (chạm vào dấu <b>…</b> trên phím tắt) và làm <b>một việc duy nhất</b>: ở <b>câu hỏi đầu tiên</b> (Ask for Input), thay phần <b>Default Answer</b> (trả lời mặc định) bằng <b>key của bạn</b>. Bấm <b>Xong</b>.
+        <br>Chỉ khi bạn đã chọn thư mục khác ở bước 2: ở hành động <b>Save File</b>, đổi nơi lưu thành thư mục của bạn.</li>
+      <li><b>Chạy phím tắt</b> (key đã điền sẵn, chỉ cần bấm <b>Xong</b>). Lần đầu có thể mất vài giây, cứ để yên.</li>
+      <li><b>Đóng hẳn Safari</b> (vuốt tắt hẳn app), mở lại, vào <code>tiennghich.joyplay.vn/play</code> và đăng nhập nhân vật. Nút ⚡ sẽ hiện trên màn hình.</li>
+      <li>Chạm ⚡ → tab <b>⚙️ Cài đặt</b> → ô <b>Bản quyền</b> → dán key → <b>Kích hoạt</b>.</li>
+    </ol>
+    <h3>Cập nhật sau này</h3>
+    <p><b>Tính năng mới tự cập nhật.</b> Khi người bán báo có bản mới của ứng dụng: chạy lại phím tắt, đóng hẳn Safari rồi mở lại.</p>
+    <div class="note"><b>Quan trọng:</b> khi Auto đang chạy, hãy giữ iPhone <b>không khóa màn hình</b> và để Safari ở phía trước. Safari tự dừng khi màn hình khóa, nên Auto cũng dừng theo. Muốn chạy lâu: vào <i>Cài đặt → Màn hình &amp; Độ sáng → Tự động khóa → Không bao giờ</i> và cắm sạc.</div>
+  </section>
+
+  <section class="card">
+    <h2>🔧 Gặp lỗi?</h2>
+    <ul>
+      <li><b>Không thấy bảng điều khiển ⚡:</b> tải lại trang game. Trên máy tính, kiểm tra tiện ích đang bật ở trang <code>chrome://extensions</code>. Trên iPhone, kiểm tra <i>Cài đặt → Safari → Tiện ích mở rộng → Userscripts</i>: <code>tiennghich.joyplay.vn</code> và <b>Các trang web khác</b> đều phải là <b>Cho phép</b>.</li>
+      <li><b>Báo key không dùng được hoặc "tài khoản khác":</b> mỗi key chỉ dùng cho một nhân vật game. Cần đổi nhân vật hoặc đổi máy thì nhắn cho người bán để đặt lại key.</li>
+      <li><b>Vẫn không được:</b> chụp màn hình lỗi và gửi cho người bán.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>ℹ️ Cần biết</h2>
+    <ul>
+      <li>Mỗi key gắn với <b>nhân vật game đầu tiên</b> kích hoạt, và dùng tối đa <b>2 thiết bị</b>. Mỗi lúc chỉ 1 thiết bị chạy được: kích hoạt thêm máy mới thì máy cũ sẽ dừng.</li>
+      <li>Key dùng cho iPhone, máy tính hoặc cả hai, tùy gói bạn mua.</li>
+      <li>Xóa dữ liệu trình duyệt sẽ bị tính là một thiết bị mới.</li>
+      <li><b>Vì sao trên iPhone phải cho phép "Các trang web khác"?</b> Màn hình game không nằm trên <code>tiennghich.joyplay.vn</code> mà nằm trong một khung tải từ tên miền thứ hai là <code>tiennghich.acejoygame.com</code>, và công cụ phải chạy trong khung đó. iPhone chỉ liệt kê riêng những trang bạn mở trực tiếp, nên tên miền thứ hai không có dòng riêng và chỉ cấp quyền được qua dòng <b>Các trang web khác</b>. Công cụ chỉ khai báo chạy trên hai tên miền game (mở file trong app Userscripts để xem hai dòng <code>@match</code>), nên không chạy trên trang khác. Đây là quyền của chính tiện ích Userscripts (mã nguồn mở), không riêng của công cụ này. Khi không chơi, bạn có thể chuyển dòng đó về <b>Từ chối</b> và bật lại khi cần.</li>
+      <li>Công cụ tự động có thể vi phạm điều khoản của game và có nguy cơ bị khóa tài khoản. Bạn tự chịu trách nhiệm khi sử dụng.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>🗂 Các phiên bản tiện ích máy tính</h2>
+    <p class="meta"><b>Cài lại = Có:</b> phải tải zip mới. <b>Không:</b> tính năng tự cập nhật, bạn không cần làm gì.</p>
+    <div id="versions" class="meta">Đang tải…</div>
+  </section>
+</main>
+<script>
+(function () {
+  fetch('VERSIONS.md', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (md) {
+    var rows = md.split('\n').filter(function (l) { return /^\| \d+\.\d+\.\d+ \|/.test(l); }).map(function (l) {
+      var c = l.split('|').map(function (x) { return x.trim(); }); return { ver: c[1], date: c[2], re: c[3], note: c[5] || '' };
+    });
+    if (!rows.length) throw 0;
+    var top = rows[0];
+    document.getElementById('dl-btn').textContent = '⬇️ Tải về tiện ích cho máy tính (v' + top.ver + ')';
+    document.getElementById('dl-meta').textContent = 'Bản mới nhất: v' + top.ver + ' · ' + top.date + (top.re === 'Có' ? ' · bản này cần tải lại zip' : '');
+    var box = document.getElementById('versions'); box.textContent = '';
+    rows.forEach(function (r) {
+      var d = document.createElement('div'); d.style.margin = '6px 0';
+      var a = document.createElement('a'); a.href = 'tn-extension-' + r.ver + '.zip'; a.textContent = 'v' + r.ver;
+      d.append(a, ' · ' + r.date + ' · Cài lại: ' + r.re + (r.note && r.note !== '—' ? ' · ' + r.note : '')); box.append(d);
+    });
+  }).catch(function () { document.getElementById('versions').textContent = 'Không đọc được danh sách phiên bản.'; });
+})();
+</script>
+</body>
+</html>
