@@ -227,20 +227,26 @@
   <div class="wrap">
     <p class="eyebrow">Mua key</p>
     <h2>Chọn gói phù hợp</h2>
-    <p class="sub">Key dùng được cho iPhone và máy tính, gắn với một nhân vật game và tối đa 2 thiết bị.</p>
-    <div class="grid two price">
+    <p class="sub">Nhắn Zalo để biết giá và nhận key. Mỗi key gắn với một nhân vật game và tối đa 2 thiết bị. Dùng thử có cả iPhone và máy tính.</p>
+    <div class="grid price">
       <div class="card">
         <h3>🧪 Dùng thử</h3>
         <div class="big grad" id="p-trial">Miễn phí</div>
-        <ul><li>3 ngày dùng đầy đủ tính năng, không mất phí</li><li>Cài và thử trên máy của bạn</li><li>Hợp để làm quen trước khi mua</li></ul>
+        <ul><li>3 ngày, dùng được <b>cả iPhone và máy tính</b></li><li>Đầy đủ tính năng, không mất phí</li><li>Hợp để làm quen trước khi mua</li></ul>
         <a class="btn ghost contact" href="#lien-he">Nhận key dùng thử miễn phí</a>
       </div>
+      <div class="card">
+        <h3>📱 Một nền tảng</h3>
+        <div class="big grad" id="p-single">Liên hệ</div>
+        <ul><li>Chọn <b>iPhone</b> hoặc <b>máy tính</b></li><li>30 ngày, gia hạn khi cần</li><li>Cập nhật tính năng và sự kiện mới</li></ul>
+        <a class="btn ghost contact" href="#lien-he">Mua gói 1 nền tảng</a>
+      </div>
       <div class="card hot">
-        <span class="badge">Phổ biến</span>
-        <h3>👑 Gói tháng</h3>
-        <div class="big grad" id="p-month">80.000đ / tháng</div>
-        <ul><li>30 ngày, gia hạn khi cần</li><li>Cập nhật tính năng và sự kiện mới</li><li>Hỗ trợ cài đặt và đổi nhân vật</li></ul>
-        <a class="btn pri contact" href="#lien-he">Mua gói tháng</a>
+        <span class="badge">Tiết kiệm nhất</span>
+        <h3>👑 Cả hai nền tảng</h3>
+        <div class="big grad" id="p-both">Liên hệ</div>
+        <ul><li><b>iPhone và máy tính</b> cùng một key</li><li>30 ngày, gia hạn khi cần</li><li>Tiết kiệm hơn mua từng nền tảng</li></ul>
+        <a class="btn pri contact" href="#lien-he">Mua gói cả hai</a>
       </div>
     </div>
     <div class="panel" id="lien-he" style="text-align:center">
@@ -277,12 +283,14 @@
 (function () {
   // === Owner settings: fill these in; leave empty to show "Liên hệ" and hide the contact button ===
   var PRICE_TRIAL = 'Miễn phí';
-  var PRICE_MONTH = '80.000đ / tháng';
+  var PRICE_SINGLE = '';      // e.g. '50.000đ / tháng' (empty = show "Liên hệ")
+  var PRICE_BOTH = '';        // e.g. '80.000đ / tháng'
   var CONTACT_TEXT = 'Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.';
   var CONTACT_URL = '';      // e.g. 'https://zalo.me/…' (must start with https://)
 
   if (PRICE_TRIAL) document.getElementById('p-trial').textContent = PRICE_TRIAL;
-  if (PRICE_MONTH) document.getElementById('p-month').textContent = PRICE_MONTH;
+  if (PRICE_SINGLE) document.getElementById('p-single').textContent = PRICE_SINGLE;
+  if (PRICE_BOTH) document.getElementById('p-both').textContent = PRICE_BOTH;
   if (CONTACT_TEXT) document.getElementById('contact-text').textContent = CONTACT_TEXT;
   if (/^https:\/\//.test(CONTACT_URL)) {
     var b = document.getElementById('contact-btn'); b.href = CONTACT_URL; b.target = '_blank'; b.rel = 'noopener'; b.hidden = false;
