@@ -228,21 +228,22 @@
     <div class="grid two price">
       <div class="card">
         <h3>🧪 Dùng thử</h3>
-        <div class="big grad" id="p-trial">Liên hệ</div>
-        <ul><li>3 ngày dùng đầy đủ tính năng</li><li>Cài và thử trên máy của bạn</li><li>Hợp để làm quen trước khi mua</li></ul>
-        <a class="btn ghost contact" href="#lien-he">Nhận key dùng thử</a>
+        <div class="big grad" id="p-trial">Miễn phí</div>
+        <ul><li>3 ngày dùng đầy đủ tính năng, không mất phí</li><li>Cài và thử trên máy của bạn</li><li>Hợp để làm quen trước khi mua</li></ul>
+        <a class="btn ghost contact" href="#lien-he">Nhận key dùng thử miễn phí</a>
       </div>
       <div class="card hot">
         <span class="badge">Phổ biến</span>
         <h3>👑 Gói tháng</h3>
-        <div class="big grad" id="p-month">Liên hệ</div>
+        <div class="big grad" id="p-month">80.000đ / tháng</div>
         <ul><li>30 ngày, gia hạn khi cần</li><li>Cập nhật tính năng và sự kiện mới</li><li>Hỗ trợ cài đặt và đổi nhân vật</li></ul>
         <a class="btn pri contact" href="#lien-he">Mua gói tháng</a>
       </div>
     </div>
     <div class="panel" id="lien-he" style="text-align:center">
       <h3>💬 Liên hệ người bán</h3>
-      <p class="sub" style="margin:6px auto 14px" id="contact-text">Thông tin liên hệ đang được cập nhật.</p>
+      <p class="sub" style="margin:6px auto 14px" id="contact-text">Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.</p>
+      <img src="zalo-qr.jpg" alt="Mã QR Zalo của người bán" width="260" height="260" loading="lazy" style="max-width:100%;height:auto;border-radius:14px;background:#fff;padding:8px">
       <a class="btn pri" id="contact-btn" href="#lien-he" hidden>Nhắn tin ngay</a>
     </div>
   </div>
@@ -272,9 +273,9 @@
 <script>
 (function () {
   // === Owner settings: fill these in; leave empty to show "Liên hệ" and hide the contact button ===
-  var PRICE_TRIAL = '';      // e.g. '30.000đ'
-  var PRICE_MONTH = '';      // e.g. '150.000đ / tháng'
-  var CONTACT_TEXT = '';     // e.g. 'Zalo / Telegram: …'
+  var PRICE_TRIAL = 'Miễn phí';
+  var PRICE_MONTH = '80.000đ / tháng';
+  var CONTACT_TEXT = 'Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.';
   var CONTACT_URL = '';      // e.g. 'https://zalo.me/…' (must start with https://)
 
   if (PRICE_TRIAL) document.getElementById('p-trial').textContent = PRICE_TRIAL;
