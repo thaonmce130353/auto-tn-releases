@@ -13,6 +13,11 @@
   "r2_buckets": [
     { "binding": "ZIPS", "bucket_name": "auto-tn-zips" }
   ],
+  // Custom domain (zone autotiennghich.online is on this Cloudflare account); Cloudflare creates the DNS records and the certificate. The workers.dev address keeps working.
+  "routes": [
+    { "pattern": "autotiennghich.online", "custom_domain": true },
+    { "pattern": "www.autotiennghich.online", "custom_domain": true }
+  ],
   // Preview builds (PR checks) get NO bindings or variables on purpose: previews must never touch production data. Wrangler requires the block, even empty.
   "previews": {}
 }
