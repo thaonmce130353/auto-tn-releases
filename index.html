@@ -32,6 +32,7 @@
   .btn.pri { background:linear-gradient(120deg,#cba6f7,#89b4fa); color:#11111b; box-shadow:0 8px 28px rgba(203,166,247,.25); }
   .btn.ghost { border-color:var(--line); color:var(--txt); background:rgba(39,39,58,.6); }
   .btn:hover,.btn:focus { filter:brightness(1.08); }
+  [hidden] { display:none !important; }   /* .btn sets display, which would otherwise override the hidden attribute (dead button shown) */
   .cta { display:flex; flex-wrap:wrap; gap:12px; }
   .hero { padding:44px 0 24px; background:radial-gradient(900px 420px at 80% -10%,rgba(203,166,247,.18),transparent 60%),radial-gradient(700px 360px at 0% 10%,rgba(137,180,250,.12),transparent 60%); }
   .hero .wrap { display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:center; }
@@ -252,8 +253,8 @@
     <div class="panel" id="lien-he" style="text-align:center">
       <h3>💬 Liên hệ người bán</h3>
       <p class="sub" style="margin:6px auto 14px" id="contact-text">Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.</p>
-      <img src="zalo-qr.jpg" alt="Mã QR Zalo của người bán" width="260" height="260" loading="lazy" style="max-width:100%;height:auto;border-radius:14px;background:#fff;padding:8px">
-      <a class="btn pri" id="contact-btn" href="#lien-he" hidden>Nhắn tin ngay</a>
+      <img src="zalo-qr.jpg" alt="Mã QR Zalo của người bán" width="260" height="260" loading="lazy" style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:14px;background:#fff;padding:8px">
+      <a class="btn pri" id="contact-btn" href="#lien-he" style="margin-top:16px" hidden>Nhắn tin ngay</a>
     </div>
   </div>
 </section>
