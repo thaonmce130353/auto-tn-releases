@@ -88,11 +88,12 @@
   .price .big { font-size:28px; font-weight:800; margin:8px 0; }
   .price ul { text-align:left; margin:12px 0 18px; padding-left:20px; color:#bac2de; }
   .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.12); }
-  .bgband { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:18px 0 6px; text-align:center; }
-  .bgband div { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:14px 8px; }
-  .bgband b { display:block; font-size:26px; font-weight:800; }
-  .bgband span { color:var(--dim); font-size:13px; }
-  .bgband .hotc { border-color:var(--acc); background:rgba(203,166,247,.1); }
+  .bgpill { display:flex; flex-direction:column; align-items:center; gap:2px; background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:10px 8px; margin:2px 0 8px; }
+  .bgpill span { color:var(--dim); font-size:13px; }
+  .bgpill b { font-size:24px; font-weight:800; color:var(--txt); }
+  .bgpill.hotp { border-color:var(--acc); background:rgba(203,166,247,.1); }
+  .price .card { position:relative; }
+  .price .card .badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); }
   .cmp tr.bgrow td { font-weight:700; color:var(--txt); background:rgba(203,166,247,.06); }
   .price .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.15); }
   .price .card { display:flex; flex-direction:column; }
@@ -117,7 +118,6 @@
     .hero .wrap { grid-template-columns:1fr; }
     .stats { grid-template-columns:repeat(2,1fr); }
     .grid, .grid.four, .steps { grid-template-columns:1fr 1fr; }
-    .bgband { grid-template-columns:1fr 1fr; }
   }
   @media (max-width:560px) {
     section { padding-top:44px; }
@@ -265,26 +265,21 @@
     <p class="eyebrow">Mua key</p>
     <h2>Chọn gói phù hợp</h2>
     <p class="sub">Một key dùng được trên <b>cả iPhone và máy tính</b>, không phải mua riêng từng nền tảng. Mỗi key gắn với một nhân vật game và tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy). Nhắn Zalo để nhận key.</p>
-    <p class="sub" style="margin-top:18px"><b>Điểm khác nhau chính giữa các gói là thời gian chạy nền mỗi ngày</b>: canh giữ chỗ, khai thác Di Tích và các việc nhiều giờ chạy tự động trong lúc bạn làm việc khác.</p>
-    <div class="bgband" aria-label="Thời gian chạy nền mỗi ngày theo gói">
-      <div><b class="grad">30 phút</b><span>Dùng thử</span></div>
-      <div><b class="grad">1 giờ</b><span>Standard</span></div>
-      <div class="hotc"><b class="grad">12 giờ</b><span>Pro · khuyên dùng</span></div>
-      <div><b class="grad">20 giờ</b><span>Max</span></div>
-    </div>
     <div class="grid four price">
       <div class="card">
         <h3>🧪 Dùng thử</h3>
         <div class="big grad" id="p-trial">Miễn phí</div>
         <div class="per">3 ngày</div>
-        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Chạy nền <b>30 phút mỗi ngày</b></li><li>Có giữ game luôn kết nối và đồ họa nét</li><li>Mỗi tài khoản game và mỗi thiết bị dùng thử một lần</li></ul>
+        <div class="bgpill"><span>🔁 Chạy nền</span><b>30 phút</b><span>mỗi ngày</span></div>
+        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Có giữ game luôn kết nối và đồ họa nét</li><li>Mỗi tài khoản game và mỗi thiết bị dùng thử một lần</li></ul>
         <a class="btn ghost contact" href="#lien-he">Nhận key dùng thử</a>
       </div>
       <div class="card">
         <h3>📅 Standard</h3>
         <div class="big grad" id="p-standard">50.000đ</div>
         <div class="per">30 ngày</div>
-        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Chạy nền <b>1 giờ mỗi ngày</b></li><li>Hợp để làm nhiệm vụ hằng ngày</li><li>Không có giữ game luôn kết nối và đồ họa nét</li></ul>
+        <div class="bgpill"><span>🔁 Chạy nền</span><b>1 giờ</b><span>mỗi ngày</span></div>
+        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Hợp để làm nhiệm vụ hằng ngày</li><li>Không có giữ game luôn kết nối và đồ họa nét</li></ul>
         <a class="btn ghost contact" href="#lien-he">Mua Standard</a>
       </div>
       <div class="card hot">
@@ -292,14 +287,16 @@
         <h3>👑 Pro</h3>
         <div class="big grad" id="p-pro">120.000đ</div>
         <div class="per">30 ngày · khoảng 4.000đ mỗi ngày</div>
-        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Chạy nền <b>12 giờ mỗi ngày</b></li><li><b>Giữ game luôn kết nối</b>, tự vào lại khi bị ngắt</li><li><b>Đồ họa nét</b> trên iPhone</li></ul>
+        <div class="bgpill hotp"><span>🔁 Chạy nền</span><b>12 giờ</b><span>mỗi ngày</span></div>
+        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li><b>Giữ game luôn kết nối</b>, tự vào lại khi bị ngắt</li><li><b>Đồ họa nét</b> trên iPhone</li></ul>
         <a class="btn pri contact" href="#lien-he">Mua Pro</a>
       </div>
       <div class="card">
         <h3>🚀 Max</h3>
         <div class="big grad" id="p-max">200.000đ</div>
         <div class="per">30 ngày</div>
-        <ul><li>Mọi thứ của Pro</li><li>Chạy nền <b>20 giờ mỗi ngày</b></li><li>Dành cho người chạy nền gần như cả ngày</li></ul>
+        <div class="bgpill"><span>🔁 Chạy nền</span><b>20 giờ</b><span>mỗi ngày</span></div>
+        <ul><li>Mọi thứ của Pro</li><li>Dành cho người chạy nền gần như cả ngày</li></ul>
         <a class="btn ghost contact" href="#lien-he">Mua Max</a>
       </div>
     </div>
