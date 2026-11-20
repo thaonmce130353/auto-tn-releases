@@ -87,6 +87,13 @@
   .price { text-align:center; }
   .price .big { font-size:28px; font-weight:800; margin:8px 0; }
   .price ul { text-align:left; margin:12px 0 18px; padding-left:20px; color:#bac2de; }
+  .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.12); }
+  .bgband { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:18px 0 6px; text-align:center; }
+  .bgband div { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:14px 8px; }
+  .bgband b { display:block; font-size:26px; font-weight:800; }
+  .bgband span { color:var(--dim); font-size:13px; }
+  .bgband .hotc { border-color:var(--acc); background:rgba(203,166,247,.1); }
+  .cmp tr.bgrow td { font-weight:700; color:var(--txt); background:rgba(203,166,247,.06); }
   .price .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.15); }
   .price .card { display:flex; flex-direction:column; }
   .price .card .btn { margin-top:auto; }
@@ -110,6 +117,7 @@
     .hero .wrap { grid-template-columns:1fr; }
     .stats { grid-template-columns:repeat(2,1fr); }
     .grid, .grid.four, .steps { grid-template-columns:1fr 1fr; }
+    .bgband { grid-template-columns:1fr 1fr; }
   }
   @media (max-width:560px) {
     section { padding-top:44px; }
@@ -138,7 +146,7 @@
         <a class="btn ghost" href="#tinh-nang">Xem tính năng</a>
       </div>
       <div class="chips">
-        <span class="chip">📱 iPhone (Safari)</span><span class="chip">💻 Chrome / Edge</span><span class="chip">✨ Đồ họa nét trên iPhone</span><span class="chip">🔄 Tự cập nhật</span><span class="chip">🚫 Không tiêu tiền thật</span>
+        <span class="chip">🔁 Chạy nền nhiều giờ</span><span class="chip">📱 iPhone (Safari)</span><span class="chip">💻 Chrome / Edge</span><span class="chip">✨ Đồ họa nét trên iPhone</span><span class="chip">🔄 Tự cập nhật</span><span class="chip">🚫 Không tiêu tiền thật</span>
       </div>
     </div>
     <div>
@@ -191,13 +199,13 @@
     <h2>Mọi việc lặp lại, giao cho công cụ</h2>
     <p class="sub">Công cụ thao tác như một người chơi thật trên tài khoản của bạn, với nhịp bấm có độ trễ tự nhiên.</p>
     <div class="grid">
+      <div class="card hot"><span class="badge">Điểm nổi bật</span><span class="ic">🔁</span><h3>Chạy nền nhiều giờ, nhiều việc cùng lúc</h3><p>Tab Chạy nền giữ chỗ Cực Âm Địa, khai thác Di Tích và chiếm bệ Liên Server song song, hàng giờ liền. Bạn bấm Quét Nhanh thì chúng tự tạm dừng, xong việc lại chạy tiếp. Số giờ chạy nền mỗi ngày là điểm khác nhau chính giữa các gói: Standard 1 giờ, Pro 12 giờ, Max 20 giờ.</p></div>
       <div class="card"><span class="ic">⚡</span><h3>Quét Nhanh</h3><p>Một nút chạy trọn bộ nhiệm vụ ngày theo thứ tự cố định, rồi tới các sự kiện đang mở. Dừng giữa chừng rồi chạy tiếp được.</p></div>
       <div class="card"><span class="ic">⏱</span><h3>Thu Hoạch theo giờ</h3><p>Một lượt ngắn để gom phần thưởng tích lũy theo thời gian như Ma Đạo, Núi Cấm, Cực Âm Địa. Làm đều tay mà không tốn công.</p></div>
       <div class="card"><span class="ic">🎴</span><h3>Sự kiện tự nhận</h3><p>Biết sự kiện nào đang mở, bỏ qua sự kiện đã đóng. Nhận quà miễn phí và làm nhiệm vụ sự kiện, có giới hạn rõ ràng cho phần Tiên Ngọc.</p></div>
       <div class="card"><span class="ic">🛡️</span><h3>An toàn cho túi tiền</h3><p>Không bao giờ nạp hay tiêu tiền thật. Phần dùng Tiên Ngọc (nếu có) bị giới hạn mỗi ngày và kiểm tra lại kho đồ thật trước khi mua.</p></div>
       <div class="card"><span class="ic">📜</span><h3>Nhật ký minh bạch</h3><p>Mỗi bước ghi lại việc đã làm. Phần thưởng chỉ được báo thành công khi game xác nhận, không báo ảo.</p></div>
       <div class="card"><span class="ic">🔌</span><h3>Tự xử lý mất kết nối <small>(Pro, Max)</small></h3><p>Game báo mất kết nối thì công cụ tạm dừng, tải lại và chạy tiếp, không bắt bạn canh máy.</p></div>
-      <div class="card"><span class="ic">🔁</span><h3>Chạy nền nhiều việc cùng lúc</h3><p>Tab Chạy nền giữ chỗ Cực Âm Địa, khai thác Di Tích và chiếm bệ Liên Server song song. Bạn bấm Quét Nhanh thì chúng tự tạm dừng, xong việc lại chạy tiếp.</p></div>
       <div class="card"><span class="ic">🧠</span><h3>Tự đáp đố vui Đấu Tiên Nghịch</h3><p>Bật trước 19h, công cụ chờ sự kiện mở rồi đáp 20 câu và dùng hết vật phẩm trợ giúp, xong tự dừng.</p></div>
       <div class="card"><span class="ic">🪟</span><h3>Giữ kết nối khi ẩn tab (máy tính) <small>(Pro, Max)</small></h3><p>Chuyển cửa sổ hay thu nhỏ trình duyệt, game vẫn giữ kết nối, ít bị văng ra màn hình đăng nhập.</p></div>
       <div class="card"><span class="ic">✨</span><h3>Đồ họa nét trên iPhone <small>(Pro, Max)</small></h3><p>Nâng độ nét x3 và 60 khung hình/giây khi bạn tự chơi, bật tắt trong ⚙️ Cài đặt. Khi Auto chạy, công cụ tự hạ xuống để máy đỡ nóng.</p></div>
@@ -257,6 +265,13 @@
     <p class="eyebrow">Mua key</p>
     <h2>Chọn gói phù hợp</h2>
     <p class="sub">Một key dùng được trên <b>cả iPhone và máy tính</b>, không phải mua riêng từng nền tảng. Mỗi key gắn với một nhân vật game và tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy). Nhắn Zalo để nhận key.</p>
+    <p class="sub" style="margin-top:18px"><b>Điểm khác nhau chính giữa các gói là thời gian chạy nền mỗi ngày</b>: canh giữ chỗ, khai thác Di Tích và các việc nhiều giờ chạy tự động trong lúc bạn làm việc khác.</p>
+    <div class="bgband" aria-label="Thời gian chạy nền mỗi ngày theo gói">
+      <div><b class="grad">30 phút</b><span>Dùng thử</span></div>
+      <div><b class="grad">1 giờ</b><span>Standard</span></div>
+      <div class="hotc"><b class="grad">12 giờ</b><span>Pro · khuyên dùng</span></div>
+      <div><b class="grad">20 giờ</b><span>Max</span></div>
+    </div>
     <div class="grid four price">
       <div class="card">
         <h3>🧪 Dùng thử</h3>
@@ -295,7 +310,7 @@
         <tr><td>Giá</td><td>Miễn phí</td><td>50.000đ</td><td class="hotc">120.000đ</td><td>200.000đ</td></tr>
         <tr><td>iPhone + máy tính</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
         <tr><td>Nhiệm vụ ngày và sự kiện</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
-        <tr><td>Chạy nền mỗi ngày</td><td>30 phút</td><td>1 giờ</td><td class="hotc"><b>12 giờ</b></td><td>20 giờ</td></tr>
+        <tr class="bgrow"><td>🔁 Chạy nền mỗi ngày</td><td>30 phút</td><td>1 giờ</td><td class="hotc"><b>12 giờ</b></td><td>20 giờ</td></tr>
         <tr><td>Giữ game luôn kết nối</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
         <tr><td>Đồ họa nét trên iPhone</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
       </tbody>
