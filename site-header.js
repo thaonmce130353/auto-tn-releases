@@ -2,11 +2,13 @@
 (function () {
   // Cloudflare may serve the guide as /huong-dan or /huong-dan.html: accept both.
   var onGuide = function () { return window.__tnGuide === true || /^\/huong-dan(\.html)?\/?$/.test(location.pathname); };
+  var onVersions = function () { return /^\/phien-ban(\.html)?\/?$/.test(location.pathname); };
   var links = [
     ['/', 'Giới thiệu'],
     ['/#tinh-nang', 'Tính năng'],
     ['/#bang-gia', 'Mua key'],
-    ['/huong-dan.html', 'Hướng dẫn cài đặt']
+    ['/huong-dan.html', 'Hướng dẫn cài đặt'],
+    ['/phien-ban.html', 'Lịch sử phiên bản']
   ];
   var css = document.createElement('style');
   css.textContent =
@@ -37,6 +39,7 @@
   function sync() {
     var idx = 0;
     if (onGuide()) idx = 3;
+    else if (onVersions()) idx = 4;
     else {
       var f = document.getElementById('tinh-nang'), b = document.getElementById('bang-gia');
       var y = window.pageYOffset + 140;
