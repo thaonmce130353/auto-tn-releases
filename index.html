@@ -109,8 +109,6 @@
   details { background:var(--card); border-radius:12px; padding:0 16px; margin:10px 0; }
   summary { cursor:pointer; padding:14px 0; font-weight:700; min-height:44px; }
   details p { margin:0 0 14px; color:#bac2de; }
-  .ver { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-  .ver span { font-size:13px; padding:5px 10px; border-radius:8px; background:var(--bg2); border:1px solid var(--line); color:#bac2de; }
   .note { border-left:3px solid var(--warn); padding:10px 14px; background:#2b2a22; border-radius:0 10px 10px 0; margin:18px 0 0; color:#e6dcb5; font-size:15px; }
   footer { margin-top:64px; border-top:1px solid var(--line); padding:26px 0 44px; color:var(--dim); font-size:14px; }
   footer .wrap { display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:space-between; }
@@ -256,7 +254,6 @@
       <div class="card"><span class="ic">🔄</span><h3>Không phải cài lại</h3><p>Tính năng mới tải về mỗi lần bạn vào game. Hiếm khi mới cần cài lại phần vỏ, và trang hướng dẫn sẽ báo rõ.</p></div>
       <div class="card"><span class="ic">💬</span><h3>Có người hỗ trợ</h3><p>Gặp lỗi, đổi nhân vật hay đổi máy: nhắn người bán để được hỗ trợ và đặt lại key.</p></div>
     </div>
-    <div class="ver" id="ver" aria-live="polite"></div>
   </div>
 </section>
 
@@ -365,17 +362,6 @@
     var b = document.getElementById('contact-btn'); b.href = CONTACT_URL; b.target = '_blank'; b.rel = 'noopener'; b.hidden = false;
     Array.prototype.forEach.call(document.querySelectorAll('a.contact'), function (a) { a.href = CONTACT_URL; a.target = '_blank'; a.rel = 'noopener'; });
   }
-
-  // Latest versions straight from the release list (same file the guide page reads); the block stays empty if it cannot load.
-  fetch('VERSIONS.md', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (md) {
-    var rows = md.split('\n').filter(function (l) { return /^\| \d+\.\d+\.\d+ \|/.test(l); }).slice(0, 4).map(function (l) {
-      var c = l.split('|').map(function (x) { return x.trim(); }); return { ver: c[1], date: c[2], note: c[5] || '' };
-    });
-    var box = document.getElementById('ver');
-    rows.forEach(function (r) {
-      var s = document.createElement('span'); s.textContent = 'v' + r.ver + ' · ' + r.date + (r.note && r.note !== '—' ? ' · ' + r.note : ''); box.appendChild(s);
-    });
-  }).catch(function () { });
 })();
 </script>
 </body>
