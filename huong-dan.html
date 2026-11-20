@@ -122,12 +122,6 @@
       <li>Công cụ tự động có thể vi phạm điều khoản của game và có nguy cơ bị khóa tài khoản. Bạn tự chịu trách nhiệm khi sử dụng.</li>
     </ul>
   </section>
-
-  <section class="card">
-    <h2>🗂 Các phiên bản tiện ích máy tính</h2>
-    <p class="meta"><b>Cài lại = Có:</b> phải tải zip mới. <b>Không:</b> tính năng tự cập nhật, bạn không cần làm gì.</p>
-    <div id="versions" class="meta">Đang tải…</div>
-  </section>
 </main>
 <script>
 (function () {
@@ -139,13 +133,7 @@
     var top = rows[0];
     document.getElementById('dl-btn').textContent = '⬇️ Tải về tiện ích cho máy tính (v' + top.ver + ')';
     document.getElementById('dl-meta').textContent = 'Bản mới nhất: v' + top.ver + ' · ' + top.date + (top.re === 'Có' ? ' · bản này cần tải lại zip' : '');
-    var box = document.getElementById('versions'); box.textContent = '';
-    rows.forEach(function (r) {
-      var d = document.createElement('div'); d.style.margin = '6px 0';
-      var a = document.createElement('a'); a.href = 'tn-extension-' + r.ver + '.zip'; a.textContent = 'v' + r.ver;
-      d.append(a, ' · ' + r.date + ' · Cài lại: ' + r.re + (r.note && r.note !== '—' ? ' · ' + r.note : '')); box.append(d);
-    });
-  }).catch(function () { document.getElementById('versions').textContent = 'Không đọc được danh sách phiên bản.'; });
+  }).catch(function () { });
 })();
 </script>
 </body>
