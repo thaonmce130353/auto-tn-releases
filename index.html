@@ -68,9 +68,11 @@
   /* cards */
   .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
   .grid.two { grid-template-columns:repeat(2,1fr); }
+  .grid.four { grid-template-columns:repeat(4,1fr); align-items:stretch; }
   .card { background:var(--card); border:1px solid transparent; border-radius:16px; padding:20px; }
   .card:hover { border-color:#45475a; }
   .card .ic { font-size:28px; line-height:1; margin-bottom:10px; display:block; }
+  .card h3 small { font-weight:500; color:var(--dim); font-size:12px; }
   .card p { margin:0; color:#bac2de; font-size:15px; }
   .tags { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0; padding:0; list-style:none; }
   .tags li { font-size:14px; padding:6px 12px; border-radius:10px; background:var(--bg2); border:1px solid var(--line); margin:0; }
@@ -86,6 +88,15 @@
   .price .big { font-size:28px; font-weight:800; margin:8px 0; }
   .price ul { text-align:left; margin:12px 0 18px; padding-left:20px; color:#bac2de; }
   .price .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.15); }
+  .price .card { display:flex; flex-direction:column; }
+  .price .card .btn { margin-top:auto; }
+  .price .per { color:var(--dim); font-size:14px; margin:-4px 0 6px; min-height:20px; }
+  .cmp { width:100%; border-collapse:collapse; font-size:15px; margin-top:18px; }
+  .cmp th, .cmp td { padding:10px 8px; border-bottom:1px solid var(--line); text-align:center; }
+  .cmp th:first-child, .cmp td:first-child { text-align:left; color:#bac2de; }
+  .cmp thead th { color:var(--txt); }
+  .cmp .hotc { background:rgba(203,166,247,.08); }
+  .cmp-wrap { overflow-x:auto; }
   .badge { display:inline-block; font-size:12px; font-weight:700; background:var(--acc); color:#11111b; padding:3px 10px; border-radius:99px; }
   details { background:var(--card); border-radius:12px; padding:0 16px; margin:10px 0; }
   summary { cursor:pointer; padding:14px 0; font-weight:700; min-height:44px; }
@@ -98,11 +109,11 @@
   @media (max-width:860px) {
     .hero .wrap { grid-template-columns:1fr; }
     .stats { grid-template-columns:repeat(2,1fr); }
-    .grid, .steps { grid-template-columns:1fr 1fr; }
+    .grid, .grid.four, .steps { grid-template-columns:1fr 1fr; }
   }
   @media (max-width:560px) {
     section { padding-top:44px; }
-    .grid, .grid.two, .steps, .vs { grid-template-columns:1fr; }
+    .grid, .grid.two, .grid.four, .steps, .vs { grid-template-columns:1fr; }
     .btn { width:100%; }
     .stat strong { font-size:22px; }
   }
@@ -185,11 +196,11 @@
       <div class="card"><span class="ic">🎴</span><h3>Sự kiện tự nhận</h3><p>Biết sự kiện nào đang mở, bỏ qua sự kiện đã đóng. Nhận quà miễn phí và làm nhiệm vụ sự kiện, có giới hạn rõ ràng cho phần Tiên Ngọc.</p></div>
       <div class="card"><span class="ic">🛡️</span><h3>An toàn cho túi tiền</h3><p>Không bao giờ nạp hay tiêu tiền thật. Phần dùng Tiên Ngọc (nếu có) bị giới hạn mỗi ngày và kiểm tra lại kho đồ thật trước khi mua.</p></div>
       <div class="card"><span class="ic">📜</span><h3>Nhật ký minh bạch</h3><p>Mỗi bước ghi lại việc đã làm. Phần thưởng chỉ được báo thành công khi game xác nhận, không báo ảo.</p></div>
-      <div class="card"><span class="ic">🔌</span><h3>Tự xử lý mất kết nối</h3><p>Game báo mất kết nối thì công cụ tạm dừng, tải lại và chạy tiếp, không bắt bạn canh máy.</p></div>
+      <div class="card"><span class="ic">🔌</span><h3>Tự xử lý mất kết nối <small>(Pro, Max)</small></h3><p>Game báo mất kết nối thì công cụ tạm dừng, tải lại và chạy tiếp, không bắt bạn canh máy.</p></div>
       <div class="card"><span class="ic">🔁</span><h3>Chạy nền nhiều việc cùng lúc</h3><p>Tab Chạy nền giữ chỗ Cực Âm Địa, khai thác Di Tích và chiếm bệ Liên Server song song. Bạn bấm Quét Nhanh thì chúng tự tạm dừng, xong việc lại chạy tiếp.</p></div>
       <div class="card"><span class="ic">🧠</span><h3>Tự đáp đố vui Đấu Tiên Nghịch</h3><p>Bật trước 19h, công cụ chờ sự kiện mở rồi đáp 20 câu và dùng hết vật phẩm trợ giúp, xong tự dừng.</p></div>
-      <div class="card"><span class="ic">🪟</span><h3>Giữ kết nối khi ẩn tab (máy tính)</h3><p>Chuyển cửa sổ hay thu nhỏ trình duyệt, game vẫn giữ kết nối, ít bị văng ra màn hình đăng nhập.</p></div>
-      <div class="card"><span class="ic">✨</span><h3>Đồ họa nét trên iPhone</h3><p>Nâng độ nét x3 và 60 khung hình/giây khi bạn tự chơi, bật tắt trong ⚙️ Cài đặt. Khi Auto chạy, công cụ tự hạ xuống để máy đỡ nóng.</p></div>
+      <div class="card"><span class="ic">🪟</span><h3>Giữ kết nối khi ẩn tab (máy tính) <small>(Pro, Max)</small></h3><p>Chuyển cửa sổ hay thu nhỏ trình duyệt, game vẫn giữ kết nối, ít bị văng ra màn hình đăng nhập.</p></div>
+      <div class="card"><span class="ic">✨</span><h3>Đồ họa nét trên iPhone <small>(Pro, Max)</small></h3><p>Nâng độ nét x3 và 60 khung hình/giây khi bạn tự chơi, bật tắt trong ⚙️ Cài đặt. Khi Auto chạy, công cụ tự hạ xuống để máy đỡ nóng.</p></div>
       <div class="card"><span class="ic">⏭️</span><h3>Bỏ qua hoạt ảnh trận đánh</h3><p>Các trận do công cụ chạy được lướt qua hoạt ảnh, nên mỗi lượt quét nhanh hơn nhiều.</p></div>
       <div class="card"><span class="ic">📱</span><h3>Gọn gàng trên iPhone</h3><p>Nút ⚡ nổi kéo đi đâu cũng được, chạm đúp để Quét Nhanh hoặc tạm dừng. Mở bảng điều khiển khi cần, ẩn đi khi chơi.</p></div>
     </div>
@@ -245,28 +256,51 @@
   <div class="wrap">
     <p class="eyebrow">Mua key</p>
     <h2>Chọn gói phù hợp</h2>
-    <p class="sub">Nhắn Zalo để biết giá và nhận key. Mỗi key gắn với một nhân vật game và tối đa 2 thiết bị. Dùng thử có cả iPhone và máy tính.</p>
-    <div class="grid price">
+    <p class="sub">Một key dùng được trên <b>cả iPhone và máy tính</b>, không phải mua riêng từng nền tảng. Mỗi key gắn với một nhân vật game và tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy). Nhắn Zalo để nhận key.</p>
+    <div class="grid four price">
       <div class="card">
         <h3>🧪 Dùng thử</h3>
         <div class="big grad" id="p-trial">Miễn phí</div>
-        <ul><li>3 ngày, dùng được <b>cả iPhone và máy tính</b></li><li>Đầy đủ tính năng, không mất phí</li><li>Hợp để làm quen trước khi mua</li></ul>
-        <a class="btn ghost contact" href="#lien-he">Nhận key dùng thử miễn phí</a>
+        <div class="per">3 ngày</div>
+        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Chạy nền <b>30 phút mỗi ngày</b></li><li>Có giữ game luôn kết nối và đồ họa nét</li><li>Mỗi tài khoản game và mỗi thiết bị dùng thử một lần</li></ul>
+        <a class="btn ghost contact" href="#lien-he">Nhận key dùng thử</a>
       </div>
       <div class="card">
-        <h3>📱 Một nền tảng</h3>
-        <div class="big grad" id="p-single">Liên hệ</div>
-        <ul><li>Chọn <b>iPhone</b> hoặc <b>máy tính</b></li><li>30 ngày, gia hạn khi cần</li><li>Cập nhật tính năng và sự kiện mới</li></ul>
-        <a class="btn ghost contact" href="#lien-he">Mua gói 1 nền tảng</a>
+        <h3>📅 Standard</h3>
+        <div class="big grad" id="p-standard">50.000đ</div>
+        <div class="per">30 ngày</div>
+        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Chạy nền <b>1 giờ mỗi ngày</b></li><li>Hợp để làm nhiệm vụ hằng ngày</li><li>Không có giữ game luôn kết nối và đồ họa nét</li></ul>
+        <a class="btn ghost contact" href="#lien-he">Mua Standard</a>
       </div>
       <div class="card hot">
-        <span class="badge">Tiết kiệm nhất</span>
-        <h3>👑 Cả hai nền tảng</h3>
-        <div class="big grad" id="p-both">Liên hệ</div>
-        <ul><li><b>iPhone và máy tính</b> cùng một key</li><li>30 ngày, gia hạn khi cần</li><li>Tiết kiệm hơn mua từng nền tảng</li></ul>
-        <a class="btn pri contact" href="#lien-he">Mua gói cả hai</a>
+        <span class="badge">Khuyên dùng</span>
+        <h3>👑 Pro</h3>
+        <div class="big grad" id="p-pro">120.000đ</div>
+        <div class="per">30 ngày · khoảng 4.000đ mỗi ngày</div>
+        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Chạy nền <b>12 giờ mỗi ngày</b></li><li><b>Giữ game luôn kết nối</b>, tự vào lại khi bị ngắt</li><li><b>Đồ họa nét</b> trên iPhone</li></ul>
+        <a class="btn pri contact" href="#lien-he">Mua Pro</a>
+      </div>
+      <div class="card">
+        <h3>🚀 Max</h3>
+        <div class="big grad" id="p-max">200.000đ</div>
+        <div class="per">30 ngày</div>
+        <ul><li>Mọi thứ của Pro</li><li>Chạy nền <b>20 giờ mỗi ngày</b></li><li>Dành cho người chạy nền gần như cả ngày</li></ul>
+        <a class="btn ghost contact" href="#lien-he">Mua Max</a>
       </div>
     </div>
+    <div class="cmp-wrap"><table class="cmp">
+      <thead><tr><th></th><th>Dùng thử</th><th>Standard</th><th class="hotc">Pro</th><th>Max</th></tr></thead>
+      <tbody>
+        <tr><td>Thời hạn</td><td>3 ngày</td><td>30 ngày</td><td class="hotc">30 ngày</td><td>30 ngày</td></tr>
+        <tr><td>Giá</td><td>Miễn phí</td><td>50.000đ</td><td class="hotc">120.000đ</td><td>200.000đ</td></tr>
+        <tr><td>iPhone + máy tính</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
+        <tr><td>Nhiệm vụ ngày và sự kiện</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
+        <tr><td>Chạy nền mỗi ngày</td><td>30 phút</td><td>1 giờ</td><td class="hotc"><b>12 giờ</b></td><td>20 giờ</td></tr>
+        <tr><td>Giữ game luôn kết nối</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
+        <tr><td>Đồ họa nét trên iPhone</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:14px;font-size:14px">Giờ chạy nền tính theo từng tính năng chạy nền (hai tính năng cùng chạy một giờ thì dùng hết 2 giờ hạn mức) và đặt lại lúc 00:00 giờ Việt Nam. Trên iPhone, Safari vẫn phải mở ở phía trước và máy không khóa màn hình.</p>
     <div class="panel" id="lien-he" style="text-align:center">
       <h3>💬 Liên hệ người bán</h3>
       <p class="sub" style="margin:6px auto 14px" id="contact-text">Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.</p>
@@ -282,7 +316,8 @@
     <h2>Câu hỏi thường gặp</h2>
     <details><summary>Dùng công cụ có bị khóa tài khoản không?</summary><p>Công cụ thao tác với nhịp độ như người chơi và không chạm vào tiền thật, nhưng mọi công cụ tự động đều có thể vi phạm điều khoản của game. Chúng tôi không thể cam kết tuyệt đối, bạn tự cân nhắc rủi ro cho tài khoản của mình.</p></details>
     <details><summary>Có cần để máy chạy liên tục không?</summary><p>Chỉ khi Auto đang chạy. Trên iPhone hãy giữ máy không khóa màn hình và để Safari ở phía trước. Trên máy tính, giữ tab game mở (có thể chuyển sang cửa sổ khác, game vẫn giữ kết nối). Quét Nhanh thường chỉ mất vài phút.</p></details>
-    <details><summary>Chạy nền là gì, có giới hạn không?</summary><p>Là các việc chạy nhiều giờ như canh giữ chỗ Cực Âm Địa, khai thác Di Tích hay chờ đáp đố vui lúc 19h. Chúng chạy song song và tạm dừng khi bạn bấm Quét Nhanh. Mỗi key có hạn mức chạy nền 12 giờ mỗi ngày (cộng dồn theo từng tính năng), hết hạn mức thì dừng đến hôm sau. Cần cập nhật bản mới nhất mới dùng được tab này.</p></details>
+    <details><summary>Nên chọn gói nào?</summary><p>Chỉ làm nhiệm vụ hằng ngày thì Standard là đủ. Muốn chạy nền nhiều giờ, game luôn giữ kết nối và tự vào lại khi bị ngắt, cùng đồ họa nét trên iPhone thì chọn Pro (khuyên dùng, khoảng 4.000đ mỗi ngày). Max dành cho người chạy nền gần như cả ngày. Cần nâng cấp giữa chừng thì nhắn người bán.</p></details>
+    <details><summary>Chạy nền là gì, có giới hạn không?</summary><p>Là các việc chạy nhiều giờ như canh giữ chỗ Cực Âm Địa, khai thác Di Tích hay chờ đáp đố vui lúc 19h. Chúng chạy song song và tạm dừng khi bạn bấm Quét Nhanh. Hạn mức chạy nền mỗi ngày theo gói: Dùng thử 30 phút, Standard 1 giờ, Pro 12 giờ, Max 20 giờ (tính theo từng tính năng chạy nền, đặt lại lúc 00:00 giờ Việt Nam). Hết hạn mức thì dừng đến hôm sau. Cần cập nhật bản mới nhất mới dùng được tab này.</p></details>
     <details><summary>Một key dùng được trên mấy thiết bị?</summary><p>Một key gắn với nhân vật game đầu tiên kích hoạt và dùng tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy). Cần đổi nhân vật hoặc đổi máy thì nhắn người bán để đặt lại key.</p></details>
     <details><summary>Khi có bản mới tôi có phải cài lại không?</summary><p>Thường là không: tính năng mới tự cập nhật, bạn chỉ cần tải lại trang game. Khi cần cài lại phần vỏ, trang hướng dẫn sẽ ghi rõ.</p></details>
     <details><summary>Tôi cần chuẩn bị gì?</summary><p>Một tài khoản Tiên Nghịch đã có nhân vật và key bản quyền. Trên iPhone cần thêm app Userscripts miễn phí; trên máy tính dùng Chrome hoặc Edge.</p></details>
@@ -300,16 +335,19 @@
 
 <script>
 (function () {
-  // === Owner settings: fill these in; leave empty to show "Liên hệ" and hide the contact button ===
+  // === Owner settings: prices and contact (an empty contact URL hides the contact button) ===
   var PRICE_TRIAL = 'Miễn phí';
-  var PRICE_SINGLE = '';      // e.g. '50.000đ / tháng' (empty = show "Liên hệ")
-  var PRICE_BOTH = '';        // e.g. '80.000đ / tháng'
+  var PRICE_STANDARD = '50.000đ';
+  var PRICE_PRO = '120.000đ';
+  var PRICE_MAX = '200.000đ';
+  // The comparison table above repeats these three prices: change both places together.
   var CONTACT_TEXT = 'Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.';
   var CONTACT_URL = '';      // e.g. 'https://zalo.me/…' (must start with https://)
 
   if (PRICE_TRIAL) document.getElementById('p-trial').textContent = PRICE_TRIAL;
-  if (PRICE_SINGLE) document.getElementById('p-single').textContent = PRICE_SINGLE;
-  if (PRICE_BOTH) document.getElementById('p-both').textContent = PRICE_BOTH;
+  if (PRICE_STANDARD) document.getElementById('p-standard').textContent = PRICE_STANDARD;
+  if (PRICE_PRO) document.getElementById('p-pro').textContent = PRICE_PRO;
+  if (PRICE_MAX) document.getElementById('p-max').textContent = PRICE_MAX;
   if (CONTACT_TEXT) document.getElementById('contact-text').textContent = CONTACT_TEXT;
   if (/^https:\/\//.test(CONTACT_URL)) {
     var b = document.getElementById('contact-btn'); b.href = CONTACT_URL; b.target = '_blank'; b.rel = 'noopener'; b.hidden = false;
