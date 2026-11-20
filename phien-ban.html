@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lịch sử phiên bản — Auto Tiên Nghịch</title>
+<meta name="description" content="Các phiên bản gần đây của Auto Tiên Nghịch: ngày phát hành, thay đổi và cách cập nhật.">
+<meta property="og:title" content="Lịch sử phiên bản — Auto Tiên Nghịch">
+<meta property="og:description" content="Các phiên bản gần đây của Auto Tiên Nghịch: ngày phát hành, thay đổi và cách cập nhật.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://autotiennghich.online/phien-ban.html">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:image" content="https://autotiennghich.online/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1e1e2e">
+<style>
+  :root { color-scheme: dark; --bg:#1e1e2e; --card:#27273a; --txt:#cdd6f4; --dim:#9399b2; --acc:#cba6f7; --ok:#a6e3a1; --warn:#f9e2af; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:20px 16px 60px; }
+  h1 { font-size:24px; margin:8px 0 4px; } h2 { font-size:20px; color:var(--acc); margin:0 0 10px; }
+  .sub { color:var(--dim); margin:0 0 18px; }
+  .card { background:var(--card); border-radius:12px; padding:16px; margin:14px 0; }
+  .card.latest { border:1px solid var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.12); }
+  .head { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; margin-bottom:6px; }
+  .head b { font-size:19px; } .head .date { color:var(--dim); font-size:14px; }
+  .tag { display:inline-block; font-size:12px; font-weight:700; padding:2px 10px; border-radius:99px; background:var(--acc); color:#1e1e2e; }
+  .tag.up { background:#2b2a22; color:var(--warn); border:1px solid #4a4630; } .tag.no { background:#1f2b25; color:var(--ok); border:1px solid #2f4a3a; }
+  .note { margin:6px 0 0; } .how { margin:8px 0 0; color:var(--dim); font-size:14px; }
+  .btn { display:inline-block; background:var(--acc); color:#1e1e2e; font-weight:700; padding:12px 18px; border-radius:10px; text-decoration:none; margin-top:12px; }
+  .meta { color:var(--dim); font-size:14px; } a { color:var(--acc); }
+</style>
+</head>
+<body>
+<script src="site-header.js"></script>
+<main>
+  <h1>🗂 Lịch sử phiên bản</h1>
+  <p class="sub">Các phiên bản gần đây của tiện ích máy tính và ứng dụng iPhone, mới nhất ở trên cùng.</p>
+
+  <div class="card">
+    <p class="meta" style="margin:0"><b>Có cần cài lại không?</b> Phần lớn bản chỉ thay đổi tính năng nên không cần cài lại, bạn chỉ cần <b>tải lại trang game</b>. Bản có nhãn <b>cần cài lại</b> thay đổi cả phần vỏ: máy tính tải zip mới ở trang <a href="/huong-dan.html">Hướng dẫn cài đặt</a>, iPhone chạy lại phím tắt cập nhật rồi đóng hẳn Safari và mở lại.</p>
+  </div>
+
+  <div id="list"><p class="meta">Đang tải…</p></div>
+  <p class="meta" style="margin-top:18px">Chỉ hiển thị các phiên bản gần đây. Muốn tải bản mới nhất cho máy tính: <a href="/huong-dan.html">trang Hướng dẫn cài đặt</a>.</p>
+</main>
+<script>
+(function () {
+  var box = document.getElementById('list');
+  fetch('VERSIONS.md', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (md) {
+    var rows = md.split('\n').filter(function (l) { return /^\| \d+\.\d+\.\d+ \|/.test(l); }).map(function (l) {
+      var c = l.split('|').map(function (x) { return x.trim(); }); return { ver: c[1], date: c[2], re: c[3], note: c[5] || '' };
+    });
+    if (!rows.length) throw 0;
+    box.textContent = '';
+    rows.forEach(function (r, i) {
+      var card = document.createElement('div'); card.className = 'card' + (i === 0 ? ' latest' : '');
+      var head = document.createElement('div'); head.className = 'head';
+      var v = document.createElement('b'); v.textContent = 'v' + r.ver;
+      var d = document.createElement('span'); d.className = 'date'; d.textContent = r.date;
+      head.append(v, d);
+      if (i === 0) { var t = document.createElement('span'); t.className = 'tag'; t.textContent = 'Mới nhất'; head.append(t); }
+      var u = document.createElement('span'); u.className = 'tag ' + (r.re === 'Có' ? 'up' : 'no'); u.textContent = r.re === 'Có' ? 'Cần cài lại' : 'Chỉ tải lại trang game';
+      head.append(u);
+      card.append(head);
+      var n = document.createElement('p'); n.className = 'note'; n.textContent = r.note && r.note !== '—' ? r.note : 'Cải thiện nhỏ và sửa lỗi.';
+      card.append(n);
+      box.append(card);
+    });
+  }).catch(function () { box.innerHTML = '<p class="meta">Không đọc được danh sách phiên bản, vui lòng thử lại sau.</p>'; });
+})();
+</script>
+</body>
+</html>
