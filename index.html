@@ -76,10 +76,11 @@
   .stat span { color:var(--dim); font-size:14px; }
 
   /* problem visual */
-  .collapse { display:grid; grid-template-columns:1fr auto 1fr; gap:18px; align-items:center; background:var(--bg2); border:1px solid var(--line); border-radius:18px; padding:20px; }
+  .collapse { display:grid; grid-template-columns:minmax(0,1.5fr) auto auto; justify-content:center; gap:24px; align-items:center; background:var(--bg2); border:1px solid var(--line); border-radius:18px; padding:20px; }
   .screens { display:flex; flex-wrap:wrap; gap:8px; }
-  .screens span { font-size:13px; padding:6px 10px; border-radius:8px; background:var(--card); border:1px solid var(--line); color:#a6adc8; transition:opacity .5s,transform .5s; }
-  .collapse.go .screens span { opacity:.3; transform:scale(.85); }
+  .screens span { font-size:14px; padding:6px 10px; border-radius:8px; background:var(--card); border:1px solid var(--line); color:#a6adc8; transition:opacity .5s,transform .5s; }
+  .collapse.go .screens span { background:rgba(166,227,161,.14); border-color:rgba(166,227,161,.5); color:var(--ok); }
+  .collapse.go .screens span::before { content:"✓ "; }
   .collapse .arrow { font-size:26px; color:var(--acc); transition:transform .5s; }
   .collapse.go .arrow { transform:translateX(6px); }
   .bigbtn { justify-self:center; text-align:center; padding:18px 22px; border-radius:16px; font-weight:800; color:#11111b; background:linear-gradient(120deg,#cba6f7,#89b4fa); box-shadow:0 8px 28px rgba(203,166,247,.25); transition:transform .4s; }
