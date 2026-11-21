@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Auto Tiên Nghịch — Làm xong nhiệm vụ ngày chỉ với 1 chạm</title>
-<meta name="description" content="Công cụ tự động làm nhiệm vụ hằng ngày và sự kiện trong game Tiên Nghịch. Chạy trên iPhone và máy tính, tính năng mới tự cập nhật.">
+<meta name="description" content="Công cụ tự động làm nhiệm vụ hằng ngày và sự kiện trong game Tiên Nghịch. Chạy trên iPhone và máy tính (Android sắp có), tính năng mới tự cập nhật.">
 <meta property="og:title" content="Auto Tiên Nghịch — Làm xong nhiệm vụ ngày chỉ với 1 chạm">
 <meta property="og:description" content="Quét nhanh hơn 20 bước hằng ngày và các sự kiện đang mở. iPhone và PC. Tính năng mới tự cập nhật.">
 <meta property="og:type" content="website">
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#11111b">
 <style>
-  :root { color-scheme: dark; --bg:#11111b; --bg2:#1e1e2e; --card:#27273a; --line:#313244; --txt:#cdd6f4; --dim:#9399b2; --acc:#cba6f7; --blue:#89b4fa; --ok:#a6e3a1; --warn:#f9e2af; }
+  :root { color-scheme: dark; --bg:#11111b; --bg2:#1e1e2e; --card:#27273a; --line:#313244; --txt:#cdd6f4; --dim:#9399b2; --acc:#cba6f7; --blue:#89b4fa; --ok:#a6e3a1; --warn:#f9e2af; --teal:#94e2d5; }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; scroll-padding-top:96px; }
   body { margin:0; background:var(--bg); color:var(--txt); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; overflow-x:hidden; }
@@ -33,97 +33,177 @@
   h2 { font-size:clamp(24px,4vw,34px); line-height:1.2; margin:0 0 8px; }
   h3 { font-size:18px; margin:0 0 6px; }
   .grad { background:linear-gradient(120deg,#cba6f7,#89b4fa 60%,#94e2d5); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .lead { font-size:clamp(17px,2.4vw,20px); color:#bac2de; margin:0 0 24px; max-width:34em; }
+  .lead { font-size:clamp(17px,2.4vw,20px); color:#bac2de; margin:0 0 24px; max-width:30em; }
   .eyebrow { color:var(--acc); font-weight:700; font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin:0 0 8px; }
-  .sub { color:var(--dim); margin:0 0 26px; max-width:42em; }
+  .sub { color:var(--dim); margin:0 0 24px; max-width:42em; }
   .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 22px; border-radius:12px; font-weight:700; text-decoration:none; border:1px solid transparent; }
   .btn.pri { background:linear-gradient(120deg,#cba6f7,#89b4fa); color:#11111b; box-shadow:0 8px 28px rgba(203,166,247,.25); }
   .btn.ghost { border-color:var(--line); color:var(--txt); background:rgba(39,39,58,.6); }
   .btn:hover,.btn:focus { filter:brightness(1.08); }
-  [hidden] { display:none !important; }   /* .btn sets display, which would otherwise override the hidden attribute (dead button shown) */
+  [hidden] { display:none !important; }
   .cta { display:flex; flex-wrap:wrap; gap:12px; }
   .hero { padding:44px 0 24px; background:radial-gradient(900px 420px at 80% -10%,rgba(203,166,247,.18),transparent 60%),radial-gradient(700px 360px at 0% 10%,rgba(137,180,250,.12),transparent 60%); }
   .hero .wrap { display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:center; }
   .chips { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 0; }
   .chip { font-size:13px; padding:5px 11px; border-radius:99px; background:var(--bg2); border:1px solid var(--line); color:#bac2de; }
-  /* phone mock */
-  .phone { width:min(300px,100%); margin:0 auto; background:#181825; border:2px solid #45475a; border-radius:34px; padding:14px; box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 6px rgba(203,166,247,.06); }
-  .phone .screen { background:linear-gradient(180deg,#1e1e2e,#181825); border-radius:22px; padding:14px; min-height:380px; }
+  .chip.soon { border-style:dashed; color:var(--warn); }
+
+  /* animated phone (hero) */
+  .phone { width:min(300px,100%); margin:0 auto; background:#181825; border:2px solid #45475a; border-radius:34px; padding:12px; box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 6px rgba(203,166,247,.06); }
+  .phone .screen { background:linear-gradient(180deg,#1e1e2e,#181825); border-radius:24px; padding:12px; }
   .hud { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px; }
-  .hud b { display:block; margin-bottom:8px; }
-  .hbtn { display:block; width:100%; text-align:left; padding:10px 12px; margin:6px 0; border-radius:10px; font-weight:700; font-size:14px; color:#11111b; background:linear-gradient(120deg,#cba6f7,#89b4fa); }
-  .hbtn.alt { background:#a6e3a1; }
-  .hbtn small { display:block; font-weight:500; opacity:.75; }
-  .bar { height:8px; border-radius:6px; background:#11111b; overflow:hidden; margin:12px 0 6px; }
-  .bar i { display:block; height:100%; width:38%; background:linear-gradient(90deg,#a6e3a1,#94e2d5); animation:fill 5s ease-in-out infinite alternate; }
-  @keyframes fill { from { width:12%; } to { width:92%; } }
-  .logline { font:12px/1.5 ui-monospace,Menlo,Consolas,monospace; color:#a6adc8; margin:3px 0; }
+  .hud .top { display:flex; align-items:center; gap:8px; font-weight:700; margin-bottom:10px; }
+  .ver { font-size:12px; padding:2px 9px; border-radius:99px; border:1px solid #45475a; color:#bac2de; font-weight:600; transition:background .3s,color .3s,border-color .3s; }
+  .ver.run { background:var(--ok); color:#11111b; border-color:var(--ok); }
+  .steps-mini { list-style:none; margin:0; padding:0; }
+  .steps-mini li { display:flex; align-items:center; gap:10px; font-size:14px; padding:7px 4px; color:#a6adc8; border-bottom:1px solid rgba(49,50,68,.7); transition:color .3s; }
+  .steps-mini li:last-child { border-bottom:0; }
+  .ck { width:20px; height:20px; flex:none; border-radius:50%; border:2px solid #45475a; display:grid; place-items:center; font-size:12px; line-height:1; color:transparent; transition:all .3s; }
+  .steps-mini li.cur { color:var(--txt); } .steps-mini li.cur .ck { border-color:var(--blue); border-top-color:transparent; animation:spin .8s linear infinite; }
+  .steps-mini li.done { color:var(--txt); } .steps-mini li.done .ck { background:var(--ok); border-color:var(--ok); color:#11111b; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .bar { height:8px; border-radius:6px; background:#11111b; overflow:hidden; margin:12px 0 8px; }
+  .bar i { display:block; height:100%; width:0; background:linear-gradient(90deg,#a6e3a1,#94e2d5); transition:width .6s ease; }
+  .logline { font:12px/1.5 ui-monospace,Menlo,Consolas,monospace; color:#a6adc8; min-height:18px; }
   .logline em { font-style:normal; color:var(--ok); }
+  .gobtn { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:10px; padding:11px; border-radius:12px; font-weight:800; font-size:14px; color:#11111b; background:linear-gradient(120deg,#cba6f7,#89b4fa); transition:filter .3s,transform .2s; }
+  .gobtn.press { transform:scale(.96); filter:brightness(1.2); }
   .cap { text-align:center; color:var(--dim); font-size:12px; margin-top:12px; }
-  /* stats */
+
   .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:34px; }
-  .stat { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:16px; text-align:center; }
-  .stat strong { display:block; font-size:26px; line-height:1.2; }
+  .stat { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:14px; text-align:center; }
+  .stat strong { display:block; font-size:24px; line-height:1.2; }
   .stat span { color:var(--dim); font-size:14px; }
-  /* cards */
+
+  /* problem visual */
+  .collapse { display:grid; grid-template-columns:1fr auto 1fr; gap:18px; align-items:center; background:var(--bg2); border:1px solid var(--line); border-radius:18px; padding:20px; }
+  .screens { display:flex; flex-wrap:wrap; gap:8px; }
+  .screens span { font-size:13px; padding:6px 10px; border-radius:8px; background:var(--card); border:1px solid var(--line); color:#a6adc8; transition:opacity .5s,transform .5s; }
+  .collapse.go .screens span { opacity:.3; transform:scale(.85); }
+  .collapse .arrow { font-size:26px; color:var(--acc); transition:transform .5s; }
+  .collapse.go .arrow { transform:translateX(6px); }
+  .bigbtn { justify-self:center; text-align:center; padding:18px 22px; border-radius:16px; font-weight:800; color:#11111b; background:linear-gradient(120deg,#cba6f7,#89b4fa); box-shadow:0 8px 28px rgba(203,166,247,.25); transition:transform .4s; }
+  .bigbtn small { display:block; font-weight:600; opacity:.75; }
+  .collapse.go .bigbtn { transform:scale(1.07); }
+
+  /* showcase */
+  .show { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .sc { background:var(--card); border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:12px; border:1px solid transparent; }
+  .sc:hover { border-color:#45475a; }
+  .sc h3 { margin:0; font-size:19px; }
+  .sc p { margin:0; color:#bac2de; font-size:15px; }
+  .vis { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:12px; min-height:170px; display:flex; flex-direction:column; justify-content:center; gap:8px; position:relative; overflow:hidden; }
+  .mini { display:flex; flex-wrap:wrap; gap:6px; }
+  .mini span { font-size:12.5px; padding:5px 9px; border-radius:8px; background:var(--card); border:1px solid var(--line); color:#a6adc8; transition:all .3s; }
+  .mini span.on { background:rgba(166,227,161,.14); border-color:rgba(166,227,161,.5); color:var(--ok); }
+  .mini span.cur { border-color:var(--blue); color:var(--txt); }
+  .mini span.off { opacity:.4; text-decoration:line-through; }
+  .lane { display:grid; grid-template-columns:86px 1fr; gap:8px; align-items:center; font-size:12.5px; color:#bac2de; }
+  .lane .tr { height:10px; border-radius:6px; background:#11111b; overflow:hidden; }
+  .lane .tr i { display:block; height:100%; width:0; border-radius:6px; background:linear-gradient(90deg,#cba6f7,#89b4fa); transition:width 3s linear; }
+  .lane.paused .tr i { background:repeating-linear-gradient(45deg,#585b70 0 6px,#45475a 6px 12px); transition:none; }
+  .pausepill { position:absolute; right:10px; top:10px; font-size:12px; font-weight:700; padding:4px 10px; border-radius:99px; background:var(--warn); color:#11111b; opacity:0; transform:translateY(-6px); transition:all .3s; }
+  .pausepill.on { opacity:1; transform:none; }
+  .evrow { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px; padding:5px 8px; border-radius:8px; background:var(--card); border:1px solid var(--line); transition:all .3s; }
+  .evrow .st { font-size:12px; color:var(--dim); }
+  .evrow.open { border-color:rgba(166,227,161,.45); } .evrow.open .st { color:var(--ok); }
+  .evrow.closed { opacity:.45; }
+  .gl { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13px; padding:5px 8px; border-radius:8px; background:var(--card); border:1px solid var(--line); }
+  .sw { position:relative; width:36px; height:20px; flex:none; border-radius:99px; background:#45475a; transition:background .3s; }
+  .sw::after { content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:transform .3s; }
+  .gl.on .sw { background:var(--ok); } .gl.on .sw::after { transform:translateX(16px); }
+  .shield { align-self:flex-end; font-size:12px; font-weight:700; padding:4px 10px; border-radius:99px; background:rgba(166,227,161,.15); border:1px solid rgba(166,227,161,.5); color:var(--ok); }
+  .tags { display:flex; flex-wrap:wrap; gap:8px; margin:0; padding:0; list-style:none; }
+  .tags li { font-size:13.5px; padding:5px 11px; border-radius:10px; background:var(--bg2); border:1px solid var(--line); margin:0; }
+  .tags.ev li { border-color:rgba(203,166,247,.35); }
+
+  /* icon grid */
+  .igrid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:14px; }
+  .ig { background:var(--card); border-radius:14px; padding:14px; }
+  .ig .ic { font-size:24px; display:block; margin-bottom:6px; }
+  .ig b { display:block; font-size:15px; }
+  .ig span { color:var(--dim); font-size:13px; line-height:1.4; display:block; margin-top:2px; }
+  .ig em { font-style:normal; font-size:11px; font-weight:700; color:#11111b; background:var(--acc); border-radius:99px; padding:1px 8px; margin-left:4px; vertical-align:1px; }
+
+  details { background:var(--card); border-radius:12px; padding:0 16px; margin:10px 0; }
+  summary { cursor:pointer; padding:14px 0; font-weight:700; min-height:44px; }
+  details p { margin:0 0 14px; color:#bac2de; }
+  details .tags { padding-bottom:14px; }
+  details h4 { margin:0 0 8px; font-size:14px; color:var(--dim); }
+
+  /* real UI */
+  .real { display:grid; grid-template-columns:1.6fr 1fr; gap:16px; align-items:center; margin-top:14px; }
+  .shot { margin:0; background:var(--bg2); border:1px solid var(--line); border-radius:16px; padding:10px; }
+  .shot img { display:block; width:100%; height:auto; border-radius:10px; }
+  .shot.ph { max-width:300px; margin:0 auto; border-radius:28px; padding:8px; border:2px solid #45475a; }
+  .shot.ph img { border-radius:20px; }
+  .shot figcaption { color:var(--dim); font-size:12.5px; text-align:center; margin-top:8px; }
+
+  /* steps */
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:0; list-style:none; margin:0; }
+  .steps li { background:var(--card); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px; }
+  .steps h3 { display:flex; align-items:center; gap:10px; margin:0; }
+  .steps h3 i { font-style:normal; display:grid; place-items:center; width:30px; height:30px; border-radius:50%; background:linear-gradient(120deg,#cba6f7,#89b4fa); color:#11111b; font-weight:800; font-size:15px; }
+  .steps p { margin:0; color:#bac2de; font-size:15px; }
+  .keybox { font:13px/1.4 ui-monospace,Menlo,Consolas,monospace; background:#11111b; border:1px solid var(--line); border-radius:8px; padding:9px 10px; color:#a6adc8; min-height:38px; word-break:break-all; }
+  .keybox b { color:var(--ok); font-family:system-ui,sans-serif; }
+  .dl { display:flex; align-items:center; gap:10px; font-size:14px; }
+  .dl .bar { flex:1; margin:0; }
+  .pulse { animation:pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow:0 0 0 0 rgba(203,166,247,.5); } 50% { box-shadow:0 0 0 12px rgba(203,166,247,0); } }
+
+  .strip { display:flex; flex-wrap:wrap; gap:12px; align-items:center; background:var(--bg2); border:1px solid var(--line); border-radius:16px; padding:16px 18px; }
+  .strip .big { font-weight:800; font-size:18px; }
+  .strip .tagv { font-size:12px; font-weight:700; padding:3px 10px; border-radius:99px; background:var(--acc); color:#11111b; }
+  .strip .grow { flex:1 1 220px; color:#bac2de; font-size:15px; }
+
   .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-  .grid.two { grid-template-columns:repeat(2,1fr); }
   .grid.four { grid-template-columns:repeat(4,1fr); align-items:stretch; }
   .card { background:var(--card); border:1px solid transparent; border-radius:16px; padding:20px; }
-  .card:hover { border-color:#45475a; }
-  .card .ic { font-size:28px; line-height:1; margin-bottom:10px; display:block; }
-  .card h3 small { font-weight:500; color:var(--dim); font-size:12px; }
-  .card p { margin:0; color:#bac2de; font-size:15px; }
-  .tags { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0; padding:0; list-style:none; }
-  .tags li { font-size:14px; padding:6px 12px; border-radius:10px; background:var(--bg2); border:1px solid var(--line); margin:0; }
-  .tags.ev li { border-color:rgba(203,166,247,.35); }
   .panel { background:var(--bg2); border:1px solid var(--line); border-radius:18px; padding:22px; margin-top:14px; }
-  .steps { counter-reset:s; display:grid; grid-template-columns:repeat(3,1fr); gap:14px; padding:0; list-style:none; }
-  .steps li { counter-increment:s; background:var(--card); border-radius:16px; padding:20px; position:relative; margin:0; }
-  .steps li::before { content:counter(s); display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:linear-gradient(120deg,#cba6f7,#89b4fa); color:#11111b; font-weight:800; margin-bottom:10px; }
-  .vs { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .vs .card.no { border-color:rgba(243,139,168,.35); } .vs .card.yes { border-color:rgba(166,227,161,.4); }
-  .vs ul { margin:8px 0 0; padding-left:20px; color:#bac2de; } .vs li { margin:5px 0; }
   .price { text-align:center; }
   .price .big { font-size:28px; font-weight:800; margin:8px 0; }
-  .price ul { text-align:left; margin:12px 0 18px; padding-left:20px; color:#bac2de; }
-  .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.12); }
+  .price ul { text-align:left; margin:12px 0 18px; padding-left:20px; color:#bac2de; font-size:15px; }
+  .price li { margin:5px 0; }
+  .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.15); }
   .bgpill { display:flex; flex-direction:column; align-items:center; gap:2px; background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:10px 8px; margin:2px 0 8px; }
   .bgpill span { color:var(--dim); font-size:13px; }
   .bgpill b { font-size:24px; font-weight:800; color:var(--txt); }
   .bgpill.hotp { border-color:var(--acc); background:rgba(203,166,247,.1); }
-  .price .card { position:relative; }
+  .price .card { position:relative; display:flex; flex-direction:column; }
   .price .card .badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); }
-  .cmp tr.bgrow td { font-weight:700; color:var(--txt); background:rgba(203,166,247,.06); }
-  .price .card.hot { border-color:var(--acc); box-shadow:0 0 0 1px var(--acc),0 14px 40px rgba(203,166,247,.15); }
-  .price .card { display:flex; flex-direction:column; }
   .price .card .btn { margin-top:auto; }
   .price .per { color:var(--dim); font-size:14px; margin:-4px 0 6px; min-height:20px; }
-  .cmp { width:100%; border-collapse:collapse; font-size:15px; margin-top:18px; }
+  .cmp { width:100%; border-collapse:collapse; font-size:15px; margin:0 0 14px; }
   .cmp th, .cmp td { padding:10px 8px; border-bottom:1px solid var(--line); text-align:center; }
   .cmp th:first-child, .cmp td:first-child { text-align:left; color:#bac2de; }
   .cmp thead th { color:var(--txt); }
   .cmp .hotc { background:rgba(203,166,247,.08); }
+  .cmp tr.bgrow td { font-weight:700; color:var(--txt); background:rgba(203,166,247,.06); }
   .cmp-wrap { overflow-x:auto; }
   .badge { display:inline-block; font-size:12px; font-weight:700; background:var(--acc); color:#11111b; padding:3px 10px; border-radius:99px; }
-  details { background:var(--card); border-radius:12px; padding:0 16px; margin:10px 0; }
-  summary { cursor:pointer; padding:14px 0; font-weight:700; min-height:44px; }
-  details p { margin:0 0 14px; color:#bac2de; }
+  .contact-grid { display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:center; text-align:left; }
+  .contact-grid img { display:block; width:200px; height:200px; border-radius:14px; background:#fff; padding:8px; }
   .note { border-left:3px solid var(--warn); padding:10px 14px; background:#2b2a22; border-radius:0 10px 10px 0; margin:18px 0 0; color:#e6dcb5; font-size:15px; }
   footer { margin-top:64px; border-top:1px solid var(--line); padding:26px 0 44px; color:var(--dim); font-size:14px; }
   footer .wrap { display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:space-between; }
   @media (max-width:860px) {
     .hero .wrap { grid-template-columns:1fr; }
     .stats { grid-template-columns:repeat(2,1fr); }
-    .grid, .grid.four, .steps { grid-template-columns:1fr 1fr; }
+    .igrid, .grid.four { grid-template-columns:repeat(2,1fr); }
+    .grid, .steps { grid-template-columns:1fr 1fr; }
+    .real { grid-template-columns:1fr; }
+    .collapse { grid-template-columns:1fr; text-align:center; } .collapse .arrow { transform:rotate(90deg); justify-self:center; } .collapse.go .arrow { transform:rotate(90deg) translateX(6px); } .screens { justify-content:center; }
   }
-  @media (max-width:560px) {
+  @media (max-width:640px) {
     section { padding-top:44px; }
-    .grid, .grid.two, .grid.four, .steps, .vs { grid-template-columns:1fr; }
+    .show, .grid, .grid.four, .steps { grid-template-columns:1fr; }
+    .igrid { grid-template-columns:1fr 1fr; }
     .btn { width:100%; }
-    .stat strong { font-size:22px; }
+    .stat strong { font-size:21px; }
+    .contact-grid { grid-template-columns:1fr; text-align:center; } .contact-grid img { margin:0 auto; }
   }
-  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .bar i { animation:none; } }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .pulse, .steps-mini li.cur .ck { animation:none; } * { transition-duration:0s !important; } }
 </style>
 </head>
 <body>
@@ -138,37 +218,43 @@
     <div>
       <p class="eyebrow">Công cụ tự động cho Tiên Nghịch</p>
       <h1>Nhiệm vụ ngày xong chỉ với <span class="grad">1 chạm</span>.</h1>
-      <p class="lead">Mỗi ngày bạn mất bao lâu để điểm danh, quét phó bản, nhận thưởng và chạy sự kiện? Auto Tiên Nghịch làm hết giúp bạn trên iPhone hoặc máy tính, còn bạn chỉ cần bấm một nút.</p>
+      <p class="lead">Điểm danh, quét phó bản, nhận thưởng, chạy sự kiện: bấm một nút, Auto lo phần còn lại.</p>
       <div class="cta">
         <a class="btn pri" href="#bang-gia">🔑 Mua key</a>
         <a class="btn ghost" href="#tinh-nang">Xem tính năng</a>
       </div>
       <div class="chips">
-        <span class="chip">🔁 Chạy nền nhiều giờ</span><span class="chip">📱 iPhone (Safari)</span><span class="chip">💻 Chrome / Edge</span><span class="chip">✨ Đồ họa nét trên iPhone</span><span class="chip">🔄 Tự cập nhật</span><span class="chip">🚫 Không tiêu tiền thật</span>
+        <span class="chip">📱 iPhone</span><span class="chip">💻 PC</span><span class="chip soon">🤖 Android sắp có</span><span class="chip">🚫 Không tiêu tiền thật</span>
       </div>
     </div>
     <div>
       <div class="phone" aria-hidden="true">
         <div class="screen">
-          <div class="hud">
-            <b>⚡ Auto Tiên Nghịch</b>
-            <span class="hbtn">⚡ Quét Nhanh<small>1 chạm · hơn 20 bước</small></span>
-            <span class="hbtn alt">⏱ Thu Hoạch<small>6 bước · làm mỗi giờ</small></span>
+          <div class="hud" id="s-hero">
+            <div class="top">⚡ Auto Tiên Nghịch <span class="ver" id="hero-ver">v</span></div>
+            <ul class="steps-mini">
+              <li><span class="ck">✓</span>Nhận thưởng ngày</li>
+              <li><span class="ck">✓</span>Thông Thiên · Phó bản ngày</li>
+              <li><span class="ck">✓</span>Cực Âm Địa · Ma Đạo</li>
+              <li><span class="ck">✓</span>Đấu Tiên Đài · Núi Cấm</li>
+              <li><span class="ck">✓</span>Nhận cuối ngày</li>
+              <li><span class="ck">✓</span>Sự kiện đang mở</li>
+            </ul>
             <div class="bar"><i></i></div>
-            <div class="logline"><em>Đang chạy…</em> từng bước tự nối tiếp</div>
-            <div class="logline">Nhật ký rõ ràng cho từng việc đã làm</div>
+            <div class="logline"></div>
+            <div class="gobtn">⚡ QUÉT NHANH · 1 chạm</div>
           </div>
-          <p class="cap">Hình minh họa giao diện</p>
         </div>
       </div>
+      <p class="cap">Hình minh họa</p>
     </div>
   </div>
   <div class="wrap">
     <div class="stats" style="grid-column:1/-1">
       <div class="stat"><strong class="grad">1 chạm</strong><span>chạy cả ngày</span></div>
-      <div class="stat"><strong class="grad">20+ bước</strong><span>cộng các sự kiện đang mở</span></div>
+      <div class="stat"><strong class="grad">20+ bước</strong><span>và các sự kiện đang mở</span></div>
       <div class="stat"><strong class="grad">iPhone + PC</strong><span>một key, hai nền tảng</span></div>
-      <div class="stat"><strong class="grad">0 đồng</strong><span>tiền thật bị tiêu</span></div>
+      <div class="stat"><strong class="grad">0đ</strong><span>tiền thật bị tiêu</span></div>
     </div>
   </div>
 </div>
@@ -176,17 +262,12 @@
 <section id="van-de">
   <div class="wrap">
     <p class="eyebrow">Vì sao cần</p>
-    <h2>Đừng để game ăn hết thời gian của bạn</h2>
-    <p class="sub">Tiên Nghịch có rất nhiều việc phải làm mỗi ngày. Bỏ một ngày là mất phần thưởng; làm đủ thì tốn cả buổi.</p>
-    <div class="vs">
-      <div class="card no">
-        <h3>😩 Tự làm tay</h3>
-        <ul><li>Mở hết màn hình này đến màn hình khác</li><li>Dễ quên một mục, mất thưởng cả ngày</li><li>Sự kiện mới ra phải tự dò cách nhận</li><li>Lặp lại giống hệt nhau mỗi ngày</li></ul>
-      </div>
-      <div class="card yes">
-        <h3>⚡ Dùng Auto Tiên Nghịch</h3>
-        <ul><li>Bấm <b>Quét Nhanh</b>, đi làm việc của bạn</li><li>Chạy đủ từng bước theo đúng thứ tự</li><li>Tự nhận ra sự kiện nào đang mở và làm phần miễn phí</li><li>Nhật ký cho bạn biết đã làm được gì</li></ul>
-      </div>
+    <h2>Hàng chục màn hình, giờ chỉ một nút</h2>
+    <p class="sub">Bỏ một ngày là mất thưởng. Để Auto lo phần lặp lại.</p>
+    <div class="collapse" id="s-collapse" aria-hidden="true">
+      <div class="screens"><span>Điểm danh</span><span>Phó bản</span><span>Thông Thiên</span><span>Ma Đạo</span><span>Cực Âm Địa</span><span>Đấu Tiên Đài</span><span>Nhiệm vụ</span><span>Thư</span><span>Sự kiện</span><span>Quà</span></div>
+      <div class="arrow">➜</div>
+      <div class="bigbtn">⚡ Quét Nhanh<small>1 chạm</small></div>
     </div>
   </div>
 </section>
@@ -194,40 +275,83 @@
 <section id="tinh-nang">
   <div class="wrap">
     <p class="eyebrow">Tính năng</p>
-    <h2>Mọi việc lặp lại, giao cho công cụ</h2>
-    <p class="sub">Công cụ thao tác như một người chơi thật trên tài khoản của bạn, với nhịp bấm có độ trễ tự nhiên.</p>
-    <div class="grid">
-      <div class="card hot"><span class="badge">Điểm nổi bật</span><span class="ic">🔁</span><h3>Chạy nền nhiều giờ, nhiều việc cùng lúc</h3><p>Tab Chạy nền giữ chỗ Cực Âm Địa, khai thác Di Tích và chiếm bệ Liên Server song song, hàng giờ liền. Bạn bấm Quét Nhanh thì chúng tự tạm dừng, xong việc lại chạy tiếp. Số giờ chạy nền mỗi ngày là điểm khác nhau chính giữa các gói: Standard 1 giờ, Pro 12 giờ, Max 20 giờ.</p></div>
-      <div class="card"><span class="ic">⚡</span><h3>Quét Nhanh</h3><p>Một nút chạy trọn bộ nhiệm vụ ngày theo thứ tự cố định, rồi tới các sự kiện đang mở. Dừng giữa chừng rồi chạy tiếp được.</p></div>
-      <div class="card"><span class="ic">⏱</span><h3>Thu Hoạch theo giờ</h3><p>Một lượt ngắn để gom phần thưởng tích lũy theo thời gian như Ma Đạo, Núi Cấm, Cực Âm Địa. Làm đều tay mà không tốn công.</p></div>
-      <div class="card"><span class="ic">🎴</span><h3>Sự kiện tự nhận</h3><p>Biết sự kiện nào đang mở, bỏ qua sự kiện đã đóng. Nhận quà miễn phí và làm nhiệm vụ sự kiện, có giới hạn rõ ràng cho phần Tiên Ngọc.</p></div>
-      <div class="card"><span class="ic">🛡️</span><h3>An toàn cho túi tiền</h3><p>Không bao giờ nạp hay tiêu tiền thật. Phần dùng Tiên Ngọc (nếu có) bị giới hạn mỗi ngày và kiểm tra lại kho đồ thật trước khi mua.</p></div>
-      <div class="card"><span class="ic">📜</span><h3>Nhật ký minh bạch</h3><p>Mỗi bước ghi lại việc đã làm. Phần thưởng chỉ được báo thành công khi game xác nhận, không báo ảo.</p></div>
-      <div class="card"><span class="ic">🔌</span><h3>Tự xử lý mất kết nối <small>(Pro, Max)</small></h3><p>Game báo mất kết nối thì công cụ tạm dừng, tải lại và chạy tiếp, không bắt bạn canh máy.</p></div>
-      <div class="card"><span class="ic">🧠</span><h3>Tự đáp đố vui Đấu Tiên Nghịch</h3><p>Bật trước 19h, công cụ chờ sự kiện mở rồi đáp 20 câu và dùng hết vật phẩm trợ giúp, xong tự dừng.</p></div>
-      <div class="card"><span class="ic">🪟</span><h3>Giữ kết nối khi ẩn tab (máy tính) <small>(Pro, Max)</small></h3><p>Chuyển cửa sổ hay thu nhỏ trình duyệt, game vẫn giữ kết nối, ít bị văng ra màn hình đăng nhập.</p></div>
-      <div class="card"><span class="ic">✨</span><h3>Đồ họa nét trên iPhone <small>(Pro, Max)</small></h3><p>Nâng độ nét x3 và 60 khung hình/giây khi bạn tự chơi, bật tắt trong ⚙️ Cài đặt. Khi Auto chạy, công cụ tự hạ xuống để máy đỡ nóng.</p></div>
-      <div class="card"><span class="ic">⏭️</span><h3>Bỏ qua hoạt ảnh trận đánh</h3><p>Các trận do công cụ chạy được lướt qua hoạt ảnh, nên mỗi lượt quét nhanh hơn nhiều.</p></div>
-      <div class="card"><span class="ic">📱</span><h3>Gọn gàng trên iPhone</h3><p>Nút ⚡ nổi kéo đi đâu cũng được, chạm đúp để Quét Nhanh hoặc tạm dừng. Mở bảng điều khiển khi cần, ẩn đi khi chơi.</p></div>
+    <h2>Việc lặp lại, giao cho công cụ</h2>
+    <p class="sub">Thao tác như người chơi thật trên tài khoản của bạn, nhịp bấm có độ trễ tự nhiên.</p>
+    <div class="show">
+      <div class="sc">
+        <div class="vis"><div class="mini" id="s-quick" aria-hidden="true"><span>Thưởng ngày</span><span>Tháp</span><span>Phó bản</span><span>Ma Đạo</span><span>Cực Âm</span><span>Di Tích</span><span>Đấu Tiên Đài</span><span>Cuối ngày</span></div></div>
+        <h3>⚡ Quét Nhanh</h3>
+        <p>Một nút chạy trọn bộ nhiệm vụ ngày. Dừng giữa chừng rồi chạy tiếp được.</p>
+        <ul class="tags"><li>20+ bước</li><li>⏱ Thu Hoạch theo giờ</li></ul>
+      </div>
+      <div class="sc">
+        <div class="vis" id="s-bg" aria-hidden="true">
+          <span class="pausepill">⚡ Quét Nhanh: tạm dừng</span>
+          <div class="lane"><span>Cực Âm Địa</span><div class="tr"><i></i></div></div>
+          <div class="lane"><span>Di Tích</span><div class="tr"><i></i></div></div>
+          <div class="lane"><span>Liên Server</span><div class="tr"><i></i></div></div>
+        </div>
+        <h3>🔁 Chạy nền nhiều giờ</h3>
+        <p>Nhiều việc chạy song song. Bấm Quét Nhanh thì tự nhường chỗ, xong lại chạy tiếp.</p>
+        <ul class="tags"><li>Canh giữ chỗ</li><li>Khai thác Di Tích</li><li>Chiếm bệ Liên Server</li></ul>
+      </div>
+      <div class="sc">
+        <div class="vis" id="s-ev" aria-hidden="true">
+          <div class="evrow"><span>Tiên Dị Địa</span><span class="st">…</span></div>
+          <div class="evrow"><span>Ma Hải Mịch Bảo</span><span class="st">…</span></div>
+          <div class="evrow"><span>Sinh Hoa</span><span class="st">…</span></div>
+          <div class="evrow"><span>Kim Thu Thập Quang</span><span class="st">…</span></div>
+        </div>
+        <h3>🎴 Sự kiện tự nhận</h3>
+        <p>Tự biết sự kiện nào đang mở, bỏ qua sự kiện đã đóng, chỉ nhận phần miễn phí.</p>
+        <ul class="tags ev"><li>10 sự kiện</li><li>Tự bỏ sự kiện đóng</li></ul>
+      </div>
+      <div class="sc">
+        <div class="vis" id="s-gold" aria-hidden="true">
+          <div class="gl on"><span>Thông Thiên: mua lượt quét</span><i class="sw"></i></div>
+          <div class="gl on"><span>Thiên Thuẫn: làm mới</span><i class="sw"></i></div>
+          <div class="gl on"><span>Sinh Hoa: quà Tiên Ngọc</span><i class="sw"></i></div>
+          <div class="gl on"><span>Kiếm Hành: mua xúc xắc</span><i class="sw"></i></div>
+          <span class="shield">🛡️ 0đ tiền thật</span>
+        </div>
+        <h3>💎 Tiên Ngọc do bạn chọn</h3>
+        <p>Mỗi bước tiêu Tiên Ngọc có một ô tick riêng. Bỏ tick là bước đó không tiêu.</p>
+        <ul class="tags"><li>21 ô tick</li><li>Có trần mỗi ngày</li></ul>
+      </div>
     </div>
 
-    <div class="panel">
-      <h3>📅 Nhiệm vụ hằng ngày</h3>
+    <h3 style="margin:34px 0 0">Và còn nữa</h3>
+    <div class="igrid">
+      <div class="ig"><span class="ic">🔌</span><b>Tự vào lại <em>Pro</em></b><span>Mất kết nối thì tải lại, chạy tiếp.</span></div>
+      <div class="ig"><span class="ic">🪟</span><b>Không văng khi ẩn tab <em>Pro</em></b><span>PC: đổi cửa sổ vẫn giữ kết nối.</span></div>
+      <div class="ig"><span class="ic">✨</span><b>Đồ họa nét <em>Pro</em></b><span>iPhone: x3 độ nét, 60 khung hình.</span></div>
+      <div class="ig"><span class="ic">⏭️</span><b>Bỏ qua hoạt ảnh trận</b><span>Mỗi lượt quét nhanh hơn nhiều.</span></div>
+      <div class="ig"><span class="ic">📱</span><b>Nút ⚡ nổi</b><span>Kéo đi đâu cũng được, chạm đúp chạy.</span></div>
+      <div class="ig"><span class="ic">📜</span><b>Nhật ký rõ ràng</b><span>Chỉ báo thành công khi game xác nhận.</span></div>
+      <div class="ig"><span class="ic">🧠</span><b>Tự đáp đố vui 19h</b><span>Đấu Tiên Nghịch: 20 câu, tự dừng.</span></div>
+      <div class="ig"><span class="ic">⚙️</span><b>Cài đặt từng tính năng</b><span>Số trận, số giờ, vật phẩm cần lấy.</span></div>
+    </div>
+
+    <details style="margin-top:18px">
+      <summary>📋 Danh sách đầy đủ các bước</summary>
+      <h4>📅 Hằng ngày</h4>
       <ul class="tags">
-        <li>Nhận thưởng ngày</li><li>Thông Thiên</li><li>Phó bản ngày</li><li>Thủ Vệ Tứ Phái</li><li>Cửu Uyển Nhi</li><li>Cổ Thần Địa</li><li>Cực Âm Địa</li><li>Ma Đạo</li><li>Núi Cấm</li><li>Ảo Cảnh</li><li>Đấu Tiên Đài</li><li>Tiên Minh</li><li>Chiến Lệnh</li><li>NV Tiên Duyên</li><li>Thiên Thuẫn</li><li>Nhận cuối ngày</li><li>Tiên Hữu</li><li>…và nhiều mục khác</li>
+        <li>Nhận thưởng ngày</li><li>Tâm Tiên Đài</li><li>Tiên Hữu</li><li>Thái Cổ Thu Hà</li><li>Trợ Chiến Linh Thú</li><li>Tiên Minh</li><li>Thông Thiên Tháp</li><li>Tứ Linh Tháp</li><li>Phụ Bản Ngày</li><li>Bí Cảnh Tứ Quốc</li><li>Thủ Vệ Tứ Phái</li><li>Cửu Uyển Nhi</li><li>Cổ Thần Địa</li><li>Cực Âm Địa</li><li>Di Tích Tiên Giới</li><li>Ảo Cảnh Pháp Trận</li><li>Kiếm Hành &amp; Điêu Long</li><li>Vực U Minh</li><li>Đấu Tiên Đài</li><li>Ma Đạo</li><li>Núi Cấm</li><li>NV Tiên Duyên</li><li>Nhận cuối ngày</li><li>Thiên Thuẫn</li>
       </ul>
-    </div>
-    <div class="panel">
-      <h3>🎴 Sự kiện giới hạn thời gian</h3>
+      <h4>🎴 Sự kiện giới hạn thời gian</h4>
       <ul class="tags ev">
-        <li>Tướng Thần Lâm / Đạp Thiên</li><li>Skin Ảo Hình</li><li>Tiên Dị Địa</li><li>Ma Hải Mịch Bảo</li><li>Kim Thu Thập Quang</li><li>Sinh Hoa</li><li>Ngũ Hành Mê Tung</li><li>Vòng Quay &amp; Chiêu Mộ</li><li>Thế Cờ Trân Lung</li><li>Ma Hải Mịch Bảo II</li>
+        <li>Tướng Thần Lâm / Đạp Thiên</li><li>Skin Ảo Hình</li><li>Tiên Dị Địa</li><li>Ma Hải Mịch Bảo</li><li>Ma Hải Mịch Bảo II</li><li>Kim Thu Thập Quang</li><li>Sinh Hoa</li><li>Ngũ Hành Mê Tung</li><li>Thế Cờ Trân Lung</li><li>Vòng Quay &amp; Chiêu Mộ</li>
       </ul>
-    </div>
-    <div class="panel">
-      <h3>🔁 Chạy nền (chạy lâu, nhiều giờ)</h3>
+      <h4>🔁 Chạy nền</h4>
       <ul class="tags ev">
         <li>Canh giữ chỗ Cực Âm Địa</li><li>Di Tích Tiên Giới</li><li>Di Tích Liên Server</li><li>Đấu Tiên Nghịch (19h)</li>
       </ul>
+    </details>
+
+    <h3 style="margin:34px 0 0">Giao diện thật</h3>
+    <div class="real">
+      <figure class="shot"><img src="hud-pc.webp" width="819" height="675" loading="lazy" alt="Bảng điều khiển Auto Tiên Nghịch trên máy tính, tab Chạy nền"><figcaption>Máy tính: tab Chạy nền</figcaption></figure>
+      <figure class="shot ph"><img src="hud-iphone.webp" width="585" height="910" loading="lazy" alt="Bảng điều khiển Auto Tiên Nghịch trên iPhone"><figcaption>iPhone · đã làm mờ thông tin tài khoản</figcaption></figure>
     </div>
   </div>
 </section>
@@ -236,10 +360,10 @@
   <div class="wrap">
     <p class="eyebrow">Cách dùng</p>
     <h2>Cài một lần, dùng mỗi ngày</h2>
-    <ol class="steps">
-      <li><h3>Cài đặt</h3><p>Làm theo hướng dẫn từng bước cho iPhone hoặc máy tính. Mất khoảng 3 đến 10 phút.</p></li>
-      <li><h3>Dán key</h3><p>Nhập key bản quyền người bán gửi. Thấy ✅ Đã kích hoạt là xong.</p></li>
-      <li><h3>Bấm Quét Nhanh</h3><p>Mở game, bấm một nút và để công cụ làm phần còn lại.</p></li>
+    <ol class="steps" id="s-steps">
+      <li><h3><i>1</i>Cài đặt</h3><div class="dl" aria-hidden="true"><span>⬇️</span><div class="bar"><i></i></div></div><p>3 đến 10 phút, có hướng dẫn từng bước.</p></li>
+      <li><h3><i>2</i>Dán key</h3><div class="keybox" aria-hidden="true"></div><p>Thấy ✅ Đã kích hoạt là xong.</p></li>
+      <li><h3><i>3</i>Bấm Quét Nhanh</h3><div class="gobtn" aria-hidden="true" style="margin:0">⚡ QUÉT NHANH</div><p>Mở game, bấm một nút.</p></li>
     </ol>
     <p style="margin-top:18px"><a class="btn ghost" href="/huong-dan.html">📖 Xem hướng dẫn cài đặt</a></p>
   </div>
@@ -249,11 +373,12 @@
   <div class="wrap">
     <p class="eyebrow">Luôn được cập nhật</p>
     <h2>Game ra sự kiện mới, công cụ theo kịp</h2>
-    <p class="sub">Sự kiện mới và các bản sửa lỗi được thêm đều đặn. Phần lớn tính năng mới tự về máy bạn, không phải cài lại: chỉ cần tải lại trang game.</p>
-    <div class="grid two">
-      <div class="card"><span class="ic">🔄</span><h3>Không phải cài lại</h3><p>Tính năng mới tải về mỗi lần bạn vào game. Hiếm khi mới cần cài lại phần vỏ, và trang hướng dẫn sẽ báo rõ.</p></div>
-      <div class="card"><span class="ic">💬</span><h3>Có người hỗ trợ</h3><p>Gặp lỗi, đổi nhân vật hay đổi máy: nhắn người bán để được hỗ trợ và đặt lại key.</p></div>
+    <div class="strip" style="margin-top:14px">
+      <span class="big">🔄 <span id="latest-ver">Tự cập nhật</span></span><span class="tagv" id="latest-tag" hidden></span>
+      <span class="grow" id="latest-note">Phần lớn bản mới chỉ cần tải lại trang game, không phải cài lại.</span>
+      <a class="btn ghost" href="/phien-ban.html">Lịch sử phiên bản</a>
     </div>
+    <p class="sub" style="margin:12px 0 0">💬 Đổi nhân vật hay đổi máy: nhắn người bán để đặt lại key.</p>
   </div>
 </section>
 
@@ -261,14 +386,14 @@
   <div class="wrap">
     <p class="eyebrow">Mua key</p>
     <h2>Chọn gói phù hợp</h2>
-    <p class="sub">Một key dùng được trên <b>cả iPhone và máy tính</b>, không phải mua riêng từng nền tảng. Mỗi key gắn với một nhân vật game và tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy). Nhắn Zalo để nhận key.</p>
+    <p class="sub">Một key dùng cả <b>iPhone và máy tính</b>. Gắn với một nhân vật, tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy).</p>
     <div class="grid four price">
       <div class="card">
         <h3>🧪 Dùng thử</h3>
         <div class="big grad" id="p-trial">Miễn phí</div>
         <div class="per">3 ngày</div>
         <div class="bgpill"><span>🔁 Chạy nền</span><b>30 phút</b><span>mỗi ngày</span></div>
-        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Có giữ game luôn kết nối và đồ họa nét</li><li>Mỗi tài khoản game và mỗi thiết bị dùng thử một lần</li></ul>
+        <ul><li>Đủ tính năng, iPhone + PC</li><li>Mỗi tài khoản và thiết bị 1 lần</li></ul>
         <a class="btn ghost contact" href="#lien-he">Nhận key dùng thử</a>
       </div>
       <div class="card">
@@ -276,16 +401,16 @@
         <div class="big grad" id="p-standard">50.000đ</div>
         <div class="per">30 ngày</div>
         <div class="bgpill"><span>🔁 Chạy nền</span><b>1 giờ</b><span>mỗi ngày</span></div>
-        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li>Hợp để làm nhiệm vụ hằng ngày</li><li>Không có giữ game luôn kết nối và đồ họa nét</li></ul>
+        <ul><li>Đủ tính năng, iPhone + PC</li><li>Không có tự vào lại và đồ họa nét</li></ul>
         <a class="btn ghost contact" href="#lien-he">Mua Standard</a>
       </div>
       <div class="card hot">
         <span class="badge">Khuyên dùng</span>
         <h3>👑 Pro</h3>
         <div class="big grad" id="p-pro">120.000đ</div>
-        <div class="per">30 ngày · khoảng 4.000đ mỗi ngày</div>
+        <div class="per">30 ngày · ~4.000đ/ngày</div>
         <div class="bgpill hotp"><span>🔁 Chạy nền</span><b>12 giờ</b><span>mỗi ngày</span></div>
-        <ul><li>Đủ tính năng, cả iPhone và máy tính</li><li><b>Giữ game luôn kết nối</b>, tự vào lại khi bị ngắt</li><li><b>Đồ họa nét</b> trên iPhone</li></ul>
+        <ul><li><b>Giữ game kết nối</b>, tự vào lại</li><li><b>Đồ họa nét</b> trên iPhone</li></ul>
         <a class="btn pri contact" href="#lien-he">Mua Pro</a>
       </div>
       <div class="card">
@@ -293,28 +418,35 @@
         <div class="big grad" id="p-max">200.000đ</div>
         <div class="per">30 ngày</div>
         <div class="bgpill"><span>🔁 Chạy nền</span><b>20 giờ</b><span>mỗi ngày</span></div>
-        <ul><li>Mọi thứ của Pro</li><li>Dành cho người chạy nền gần như cả ngày</li></ul>
+        <ul><li>Mọi thứ của Pro</li><li>Cho người chạy nền cả ngày</li></ul>
         <a class="btn ghost contact" href="#lien-he">Mua Max</a>
       </div>
     </div>
-    <div class="cmp-wrap"><table class="cmp">
-      <thead><tr><th></th><th>Dùng thử</th><th>Standard</th><th class="hotc">Pro</th><th>Max</th></tr></thead>
-      <tbody>
-        <tr><td>Thời hạn</td><td>3 ngày</td><td>30 ngày</td><td class="hotc">30 ngày</td><td>30 ngày</td></tr>
-        <tr><td>Giá</td><td>Miễn phí</td><td>50.000đ</td><td class="hotc">120.000đ</td><td>200.000đ</td></tr>
-        <tr><td>iPhone + máy tính</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
-        <tr><td>Nhiệm vụ ngày và sự kiện</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
-        <tr class="bgrow"><td>🔁 Chạy nền mỗi ngày</td><td>30 phút</td><td>1 giờ</td><td class="hotc"><b>12 giờ</b></td><td>20 giờ</td></tr>
-        <tr><td>Giữ game luôn kết nối</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
-        <tr><td>Đồ họa nét trên iPhone</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
-      </tbody>
-    </table></div>
-    <p class="sub" style="margin-top:14px;font-size:14px">Giờ chạy nền tính theo từng tính năng chạy nền (hai tính năng cùng chạy một giờ thì dùng hết 2 giờ hạn mức) và đặt lại lúc 00:00 giờ Việt Nam. Trên iPhone, Safari vẫn phải mở ở phía trước và máy không khóa màn hình.</p>
-    <div class="panel" id="lien-he" style="text-align:center">
-      <h3>💬 Liên hệ người bán</h3>
-      <p class="sub" style="margin:6px auto 14px" id="contact-text">Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.</p>
-      <img src="zalo-qr.jpg" alt="Mã QR Zalo của người bán" width="260" height="260" loading="lazy" style="display:block;margin:0 auto;max-width:100%;height:auto;border-radius:14px;background:#fff;padding:8px">
-      <a class="btn pri" id="contact-btn" href="#lien-he" style="margin-top:16px" hidden>Nhắn tin ngay</a>
+    <details style="margin-top:18px">
+      <summary>So sánh chi tiết các gói</summary>
+      <div class="cmp-wrap"><table class="cmp">
+        <thead><tr><th></th><th>Dùng thử</th><th>Standard</th><th class="hotc">Pro</th><th>Max</th></tr></thead>
+        <tbody>
+          <tr><td>Thời hạn</td><td>3 ngày</td><td>30 ngày</td><td class="hotc">30 ngày</td><td>30 ngày</td></tr>
+          <tr><td>Giá</td><td>Miễn phí</td><td>50.000đ</td><td class="hotc">120.000đ</td><td>200.000đ</td></tr>
+          <tr><td>iPhone + máy tính</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
+          <tr><td>Nhiệm vụ ngày và sự kiện</td><td>✅</td><td>✅</td><td class="hotc">✅</td><td>✅</td></tr>
+          <tr class="bgrow"><td>🔁 Chạy nền mỗi ngày</td><td>30 phút</td><td>1 giờ</td><td class="hotc"><b>12 giờ</b></td><td>20 giờ</td></tr>
+          <tr><td>Giữ game luôn kết nối</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
+          <tr><td>Đồ họa nét trên iPhone</td><td>✅</td><td>—</td><td class="hotc">✅</td><td>✅</td></tr>
+        </tbody>
+      </table></div>
+      <p>Giờ chạy nền tính theo từng tính năng chạy nền (hai tính năng cùng chạy một giờ thì dùng 2 giờ hạn mức) và đặt lại lúc 00:00 giờ Việt Nam. Trên iPhone, giữ Safari ở phía trước và không khóa màn hình.</p>
+    </details>
+    <div class="panel" id="lien-he">
+      <div class="contact-grid">
+        <img src="zalo-qr.jpg" alt="Mã QR Zalo của người bán" width="200" height="200" loading="lazy">
+        <div>
+          <h3>💬 Liên hệ người bán để mua key</h3>
+          <p class="sub" style="margin:6px 0 14px" id="contact-text">Quét mã QR bằng Zalo để kết bạn, hoặc nhắn qua trang Facebook.</p>
+          <a class="btn pri" id="contact-btn" href="#lien-he" hidden>Nhắn Facebook</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -323,14 +455,16 @@
   <div class="wrap">
     <p class="eyebrow">Hỏi đáp</p>
     <h2>Câu hỏi thường gặp</h2>
-    <details><summary>Dùng công cụ có bị khóa tài khoản không?</summary><p>Công cụ thao tác với nhịp độ như người chơi và không chạm vào tiền thật, nhưng mọi công cụ tự động đều có thể vi phạm điều khoản của game. Chúng tôi không thể cam kết tuyệt đối, bạn tự cân nhắc rủi ro cho tài khoản của mình.</p></details>
-    <details><summary>Có cần để máy chạy liên tục không?</summary><p>Chỉ khi Auto đang chạy. Trên iPhone hãy giữ máy không khóa màn hình và để Safari ở phía trước. Trên máy tính, giữ tab game mở (có thể chuyển sang cửa sổ khác, game vẫn giữ kết nối). Quét Nhanh thường chỉ mất vài phút.</p></details>
-    <details><summary>Nên chọn gói nào?</summary><p>Chỉ làm nhiệm vụ hằng ngày thì Standard là đủ. Muốn chạy nền nhiều giờ, game luôn giữ kết nối và tự vào lại khi bị ngắt, cùng đồ họa nét trên iPhone thì chọn Pro (khuyên dùng, khoảng 4.000đ mỗi ngày). Max dành cho người chạy nền gần như cả ngày. Cần nâng cấp giữa chừng thì nhắn người bán.</p></details>
-    <details><summary>Chạy nền là gì, có giới hạn không?</summary><p>Là các việc chạy nhiều giờ như canh giữ chỗ Cực Âm Địa, khai thác Di Tích hay chờ đáp đố vui lúc 19h. Chúng chạy song song và tạm dừng khi bạn bấm Quét Nhanh. Hạn mức chạy nền mỗi ngày theo gói: Dùng thử 30 phút, Standard 1 giờ, Pro 12 giờ, Max 20 giờ (tính theo từng tính năng chạy nền, đặt lại lúc 00:00 giờ Việt Nam). Hết hạn mức thì dừng đến hôm sau. Cần cập nhật bản mới nhất mới dùng được tab này.</p></details>
-    <details><summary>Một key dùng được trên mấy thiết bị?</summary><p>Một key gắn với nhân vật game đầu tiên kích hoạt và dùng tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy). Cần đổi nhân vật hoặc đổi máy thì nhắn người bán để đặt lại key.</p></details>
-    <details><summary>Khi có bản mới tôi có phải cài lại không?</summary><p>Thường là không: tính năng mới tự cập nhật, bạn chỉ cần tải lại trang game. Khi cần cài lại phần vỏ, trang hướng dẫn sẽ ghi rõ.</p></details>
-    <details><summary>Tôi cần chuẩn bị gì?</summary><p>Một tài khoản Tiên Nghịch đã có nhân vật và key bản quyền. Trên iPhone cần thêm app Userscripts miễn phí; trên máy tính dùng Chrome hoặc Edge.</p></details>
-    <details><summary>Công cụ có tiêu Tiên Ngọc hay tiền thật không?</summary><p>Không bao giờ dùng tiền thật. Ở những chỗ có dùng Tiên Ngọc, mức dùng bị giới hạn mỗi ngày và được kiểm tra với kho đồ thật trước khi mua.</p></details>
+    <details><summary>Dùng công cụ có bị khóa tài khoản không?</summary><p>Công cụ thao tác với nhịp độ như người chơi và không chạm vào tiền thật, nhưng mọi công cụ tự động đều có thể vi phạm điều khoản của game. Chúng tôi không thể cam kết tuyệt đối, bạn tự cân nhắc rủi ro.</p></details>
+    <details><summary>Có hỗ trợ Android không?</summary><p>Chưa, nhưng sẽ có trong thời gian tới. Hiện dùng được trên iPhone (Safari) và máy tính (Chrome hoặc Edge).</p></details>
+    <details><summary>Tôi cần chuẩn bị gì?</summary><p>Một tài khoản Tiên Nghịch đã có nhân vật và key bản quyền. iPhone cần thêm app Userscripts miễn phí; máy tính dùng Chrome hoặc Edge.</p></details>
+    <details><summary>Công cụ có hỏi mật khẩu game không?</summary><p>Không. Bạn chỉ nhập key bản quyền. Công cụ chạy ngay trong trình duyệt, trên chính phiên đăng nhập của bạn.</p></details>
+    <details><summary>Có cần để máy chạy liên tục không?</summary><p>Chỉ khi Auto đang chạy. iPhone: không khóa màn hình, để Safari ở phía trước. Máy tính: giữ tab game mở. Quét Nhanh thường chỉ mất vài phút.</p></details>
+    <details><summary>Nên chọn gói nào?</summary><p>Chỉ làm nhiệm vụ ngày thì Standard là đủ. Muốn chạy nền nhiều giờ, game giữ kết nối và đồ họa nét thì chọn Pro (khuyên dùng). Max cho người chạy nền gần như cả ngày. Cần nâng cấp giữa chừng, nhắn người bán.</p></details>
+    <details><summary>Chạy nền là gì, có giới hạn không?</summary><p>Là các việc chạy nhiều giờ như canh giữ chỗ Cực Âm Địa, khai thác Di Tích hay chờ đáp đố vui lúc 19h. Chúng chạy song song và tạm dừng khi bạn bấm Quét Nhanh. Hạn mức mỗi ngày: Dùng thử 30 phút, Standard 1 giờ, Pro 12 giờ, Max 20 giờ.</p></details>
+    <details><summary>Một key dùng được trên mấy thiết bị?</summary><p>Một key gắn với nhân vật đầu tiên kích hoạt và dùng tối đa 2 thiết bị (mỗi lúc chỉ một thiết bị chạy). Cần đổi nhân vật hoặc đổi máy thì nhắn người bán để đặt lại key.</p></details>
+    <details><summary>Có tiêu Tiên Ngọc hay tiền thật không?</summary><p>Không bao giờ dùng tiền thật. Với Tiên Ngọc, mỗi bước có ô tick riêng trong ⚙️ Cài đặt: bỏ tick là bước đó không tiêu. Bước nào còn tick thì vẫn bị giới hạn mỗi ngày và kiểm tra kho đồ thật trước khi mua.</p></details>
+    <details><summary>Khi có bản mới tôi có phải cài lại không?</summary><p>Thường là không: tính năng mới tự cập nhật, bạn chỉ cần tải lại trang game. Khi cần cài lại, trang Lịch sử phiên bản và trang hướng dẫn sẽ ghi rõ.</p></details>
     <div class="note"><b>Lưu ý:</b> đây là công cụ của bên thứ ba, không do nhà phát hành game cung cấp. Bạn tự chịu trách nhiệm khi sử dụng.</div>
   </div>
 </section>
@@ -338,7 +472,7 @@
 <footer>
   <div class="wrap">
     <span>⚡ Auto Tiên Nghịch</span>
-    <span><a href="/huong-dan.html">Hướng dẫn cài đặt</a> · <a href="/phien-ban.html">Lịch sử phiên bản</a> · <a href="#bang-gia">Mua key</a></span>
+    <span><a href="/huong-dan.html">Hướng dẫn cài đặt</a> · <a href="/phien-ban.html">Lịch sử phiên bản</a> · <a href="#bang-gia">Mua key</a> · <a href="https://www.facebook.com/auto.tien.nghich.online" target="_blank" rel="noopener">Facebook</a></span>
   </div>
 </footer>
 
@@ -350,17 +484,135 @@
   var PRICE_PRO = '120.000đ';
   var PRICE_MAX = '200.000đ';
   // The comparison table above repeats these three prices: change both places together.
-  var CONTACT_TEXT = 'Mở Zalo, bấm nút quét QR và quét mã bên dưới để kết bạn với người bán.';
-  var CONTACT_URL = '';      // e.g. 'https://zalo.me/…' (must start with https://)
+  var CONTACT_TEXT = 'Quét mã QR bằng Zalo để kết bạn, hoặc nhắn qua trang Facebook.';
+  var CONTACT_URL = 'https://www.facebook.com/auto.tien.nghich.online';      // must start with https://
 
-  if (PRICE_TRIAL) document.getElementById('p-trial').textContent = PRICE_TRIAL;
-  if (PRICE_STANDARD) document.getElementById('p-standard').textContent = PRICE_STANDARD;
-  if (PRICE_PRO) document.getElementById('p-pro').textContent = PRICE_PRO;
-  if (PRICE_MAX) document.getElementById('p-max').textContent = PRICE_MAX;
-  if (CONTACT_TEXT) document.getElementById('contact-text').textContent = CONTACT_TEXT;
+  function $(id) { return document.getElementById(id); }
+  if (PRICE_TRIAL) $('p-trial').textContent = PRICE_TRIAL;
+  if (PRICE_STANDARD) $('p-standard').textContent = PRICE_STANDARD;
+  if (PRICE_PRO) $('p-pro').textContent = PRICE_PRO;
+  if (PRICE_MAX) $('p-max').textContent = PRICE_MAX;
+  if (CONTACT_TEXT) $('contact-text').textContent = CONTACT_TEXT;
   if (/^https:\/\//.test(CONTACT_URL)) {
-    var b = document.getElementById('contact-btn'); b.href = CONTACT_URL; b.target = '_blank'; b.rel = 'noopener'; b.hidden = false;
-    Array.prototype.forEach.call(document.querySelectorAll('a.contact'), function (a) { a.href = CONTACT_URL; a.target = '_blank'; a.rel = 'noopener'; });
+    var b = $('contact-btn'); b.href = CONTACT_URL; b.target = '_blank'; b.rel = 'noopener'; b.hidden = false;
+  }
+
+  // === Latest version (same source as the version-history page) ===
+  fetch('VERSIONS.md', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (md) {
+    var row = md.split('\n').filter(function (l) { return /^\| \d+\.\d+\.\d+ \|/.test(l); })[0];
+    if (!row) throw 0;
+    var c = row.split('|').map(function (x) { return x.trim(); });
+    $('hero-ver').textContent = 'v' + c[1];
+    $('latest-ver').textContent = 'Bản mới nhất v' + c[1] + ' · ' + c[2];
+    var t = $('latest-tag'); t.hidden = false; t.textContent = c[3] === 'Có' ? 'Cần cài lại' : 'Chỉ tải lại trang game';
+    if (c[5] && c[5] !== '—') $('latest-note').textContent = c[5];
+  }).catch(function () { $('hero-ver').textContent = ''; $('hero-ver').hidden = true; });
+
+  // === Animated scenes: run only while visible, still final frame when the user prefers reduced motion ===
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function scene(el, build, final) {
+    if (!el) return;
+    if (reduce || !('IntersectionObserver' in window)) { final(); return; }
+    var visible = false, running = false, timers = [];
+    function clear() { timers.forEach(clearTimeout); timers = []; running = false; }
+    function run() {
+      if (running || !visible) return; running = true;
+      var steps = build(), i = 0;
+      (function next() {
+        if (!visible) { clear(); return; }
+        if (i >= steps.length) { running = false; timers.push(setTimeout(run, 400)); return; }
+        var st = steps[i++];
+        timers.push(setTimeout(function () { st[1](); next(); }, st[0]));
+      })();
+    }
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) run(); else clear(); }, { threshold: 0.25 }).observe(el);
+  }
+  function each(list, fn) { Array.prototype.forEach.call(list, fn); }
+
+  // hero phone
+  var hero = $('s-hero');
+  if (hero) {
+    var rows = hero.querySelectorAll('.steps-mini li'), fill = hero.querySelector('.bar i'), log = hero.querySelector('.logline'), ver = $('hero-ver'), go = hero.querySelector('.gobtn');
+    var logs = ['Nhận thưởng ngày xong', 'Quét Thông Thiên, Phó bản', 'Cực Âm Địa, Ma Đạo xong', 'Đấu Tiên Đài, Núi Cấm xong', 'Nhận thư, nhiệm vụ ngày', 'Sự kiện: nhận quà miễn phí'];
+    var reset = function () { each(rows, function (r) { r.className = ''; }); fill.style.width = '0'; log.textContent = ''; ver.classList.remove('run'); go.classList.remove('press'); };
+    var finalHero = function () { each(rows, function (r) { r.className = 'done'; }); fill.style.width = '100%'; log.innerHTML = '<em>Hoàn tất.</em> Mọi bước đã xong'; };
+    scene(hero, function () {
+      var st = [[300, reset], [500, function () { go.classList.add('press'); ver.classList.add('run'); }], [250, function () { go.classList.remove('press'); }]];
+      for (var i = 0; i < rows.length; i++) (function (i) {
+        st.push([450, function () { if (i) rows[i - 1].className = 'done'; rows[i].className = 'cur'; fill.style.width = Math.round(i / rows.length * 100) + '%'; log.innerHTML = '<em>Đang chạy…</em> ' + logs[i]; }]);
+        st.push([700, function () { rows[i].className = 'done'; fill.style.width = Math.round((i + 1) / rows.length * 100) + '%'; }]);
+      })(i);
+      st.push([300, function () { log.innerHTML = '<em>Hoàn tất.</em> Mọi bước đã xong'; ver.classList.remove('run'); }]);
+      st.push([2200, function () { }]);
+      return st;
+    }, finalHero);
+  }
+
+  // problem: screens collapse into one button
+  var col = $('s-collapse');
+  scene(col, function () { return [[600, function () { col.classList.remove('go'); }], [1200, function () { col.classList.add('go'); }], [2600, function () { }]]; }, function () { col.classList.add('go'); });
+
+  // quick run chips
+  var q = $('s-quick');
+  if (q) {
+    var chips = q.querySelectorAll('span');
+    scene(q, function () {
+      var st = [[200, function () { each(chips, function (c) { c.className = ''; }); }]];
+      for (var i = 0; i < chips.length; i++) (function (i) { st.push([380, function () { if (i) chips[i - 1].className = 'on'; chips[i].className = 'cur'; }]); })(i);
+      st.push([500, function () { each(chips, function (c) { c.className = 'on'; }); }]); st.push([1800, function () { }]);
+      return st;
+    }, function () { each(chips, function (c) { c.className = 'on'; }); });
+  }
+
+  // background lanes
+  var bg = $('s-bg');
+  if (bg) {
+    var lanes = bg.querySelectorAll('.lane'), bars = bg.querySelectorAll('.tr i'), pill = bg.querySelector('.pausepill');
+    var setW = function (w) { each(bars, function (b, i) { b.style.width = Math.min(100, w + i * 6) + '%'; }); };
+    scene(bg, function () {
+      return [[200, function () { each(lanes, function (l) { l.classList.remove('paused'); }); each(bars, function (b) { b.style.transition = 'none'; b.style.width = '0'; }); }],
+        [60, function () { each(bars, function (b) { b.style.transition = ''; }); setW(48); }],
+        [3100, function () { pill.classList.add('on'); each(lanes, function (l) { l.classList.add('paused'); }); }],
+        [1700, function () { pill.classList.remove('on'); each(lanes, function (l) { l.classList.remove('paused'); }); each(bars, function (b) { b.style.transition = ''; }); setW(94); }],
+        [3200, function () { }]];
+    }, function () { setW(70); });
+  }
+
+  // events
+  var ev = $('s-ev');
+  if (ev) {
+    var evs = ev.querySelectorAll('.evrow'), state = ['open', 'closed', 'open', 'open'];
+    var apply = function (i) { evs[i].className = 'evrow ' + state[i]; evs[i].querySelector('.st').textContent = state[i] === 'open' ? '✅ đã nhận quà' : 'đã đóng, bỏ qua'; };
+    scene(ev, function () {
+      var st = [[200, function () { each(evs, function (r) { r.className = 'evrow'; r.querySelector('.st').textContent = 'kiểm tra…'; }); }]];
+      for (var i = 0; i < evs.length; i++) (function (i) { st.push([650, function () { apply(i); }]); })(i);
+      st.push([2400, function () { }]);
+      return st;
+    }, function () { for (var i = 0; i < evs.length; i++) apply(i); });
+  }
+
+  // Tiên Ngọc ticks
+  var gd = $('s-gold');
+  if (gd) {
+    var gl = gd.querySelectorAll('.gl');
+    scene(gd, function () {
+      return [[900, function () { gl[1].classList.remove('on'); }], [1000, function () { gl[3].classList.remove('on'); }], [1800, function () { gl[1].classList.add('on'); }], [1000, function () { gl[3].classList.add('on'); }], [1400, function () { }]];
+    }, function () { });
+  }
+
+  // install steps
+  var stp = $('s-steps');
+  if (stp) {
+    var dlBar = stp.querySelector('.dl .bar i'), keyEl = stp.querySelector('.keybox'), goEl = stp.querySelectorAll('.gobtn')[0], KEY = 'TN-7K2QX-M9D4A-…';
+    var done = function () { dlBar.style.width = '100%'; keyEl.innerHTML = KEY + ' <b>✅ Đã kích hoạt</b>'; goEl.classList.add('pulse'); };
+    scene(stp, function () {
+      var st = [[200, function () { dlBar.style.transition = 'none'; dlBar.style.width = '0'; keyEl.textContent = ''; goEl.classList.remove('pulse'); }], [60, function () { dlBar.style.transition = ''; dlBar.style.width = '100%'; }]];
+      for (var i = 1; i <= KEY.length; i += 2) (function (i) { st.push([i === 1 ? 900 : 70, function () { keyEl.textContent = KEY.slice(0, i); }]); })(i);
+      st.push([300, function () { keyEl.innerHTML = KEY + ' <b>✅ Đã kích hoạt</b>'; }]);
+      st.push([300, function () { goEl.classList.add('pulse'); }]);
+      st.push([2600, function () { }]);
+      return st;
+    }, done);
   }
 })();
 </script>
