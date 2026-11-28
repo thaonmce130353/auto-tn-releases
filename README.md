@@ -12,7 +12,7 @@ Tiện ích PC cần **key bản quyền** để dùng; không có key thì khô
 
 The buyer-facing website of Auto Tiên Nghịch: sales page, install guide, version history and the PC zip downloads. System-wide picture (license server, admin page, release pipeline): the game repo `docs/handbook/` (start with `README.md` and `architecture.md`).
 
-**This repo is public and its root IS the website.** Every file at the root is served as a static asset unless it is listed in [`.assetsignore`](.assetsignore) (today: `.git`, `.assetsignore`, `wrangler.jsonc`, `worker.mjs`, `test`, `README.md`, `VERSIONS.md`). Before adding any file that is not meant for buyers (notes, docs, scripts), add it to `.assetsignore`. Never put secrets, keys or private links here.
+**This repo is public and its root IS the website.** Every file at the root is served as a static asset unless it is listed in [`.assetsignore`](.assetsignore) (today: `.git`, `.assetsignore`, `wrangler.jsonc`, `worker.mjs`, `test`, `README.md`, `VERSIONS.md`, `AGENTS.md`, `CLAUDE.md`, `.github`). Before adding any file that is not meant for buyers (notes, docs, scripts), add it to `.assetsignore`. Never put secrets, keys or private links here.
 
 ### Files
 
