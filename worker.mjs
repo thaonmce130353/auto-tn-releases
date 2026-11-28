@@ -8,7 +8,15 @@ export default {
     const isZip = ZIP.test(url.pathname);
     if ((isZip || url.pathname === '/VERSIONS.md') && env.ZIPS) {
       if (request.method !== 'GET' && request.method !== 'HEAD') return new Response('method not allowed', { status: 405, headers: { Allow: 'GET, HEAD' } });
-      const obj = await env.ZIPS.get(url.pathname.slice(1));
+      // HEAD reads only the metadata (no body download). An R2 error answers 503 + Retry-After instead of a Cloudflare error page,
+      // so the download button and the version list can simply be retried.
+      let obj;
+      try {
+        const key = url.pathname.slice(1);
+        obj = request.method === 'HEAD' && typeof env.ZIPS.head === 'function' ? await env.ZIPS.head(key) : await env.ZIPS.get(key);
+      } catch (e) {
+        return new Response('Máy chủ tải về đang bận, vui lòng thử lại sau ít phút.', { status: 503, headers: { 'Cache-Control': 'no-store', 'Retry-After': '60', 'Content-Type': 'text/plain; charset=utf-8' } });
+      }
       if (!obj) return new Response('not found', { status: 404, headers: { 'Cache-Control': 'no-cache' } });
       const headers = new Headers({
         'Content-Type': isZip ? 'application/zip' : 'text/markdown; charset=utf-8',
