@@ -45,7 +45,7 @@
   <p class="sub">Các phiên bản gần đây của tiện ích máy tính và ứng dụng iPhone, mới nhất ở trên cùng.</p>
 
   <div class="card">
-    <p class="meta" style="margin:0"><b>Có cần cài lại không?</b> Phần lớn bản chỉ thay đổi tính năng nên không cần cài lại, bạn chỉ cần <b>tải lại trang game</b>. Bản có nhãn <b>cần cài lại</b> thay đổi cả phần vỏ: máy tính tải zip mới ở trang <a href="/huong-dan.html">Hướng dẫn cài đặt</a>, iPhone chạy lại phím tắt cập nhật rồi đóng hẳn Safari và mở lại.</p>
+    <p class="meta" style="margin:0"><b>Có cần cài lại không?</b> Phần lớn bản chỉ thay đổi tính năng nên không cần cài lại, bạn chỉ cần <b>tải lại trang game</b>. Bản có nhãn <b>iPhone: chạy lại phím tắt</b> thay đổi cả phần vỏ: iPhone chạy lại phím tắt cập nhật rồi đóng hẳn Safari và mở lại; máy tính (từ bản 1.1.21) tự nhận bản mới khi tải lại trang game, chỉ tải zip mới ở trang <a href="/huong-dan.html">Hướng dẫn cài đặt</a> khi tiện ích báo "cần cài lại tiện ích bản mới".</p>
   </div>
 
   <div id="list"><p class="meta">Đang tải…</p></div>
@@ -67,7 +67,7 @@
       var d = document.createElement('span'); d.className = 'date'; d.textContent = r.date;
       head.append(v, d);
       if (i === 0) { var t = document.createElement('span'); t.className = 'tag'; t.textContent = 'Mới nhất'; head.append(t); }
-      var u = document.createElement('span'); u.className = 'tag ' + (r.re === 'Có' ? 'up' : 'no'); u.textContent = r.re === 'Có' ? 'Cần cài lại' : 'Chỉ tải lại trang game';
+      var u = document.createElement('span'); u.className = 'tag ' + (r.re === 'Có' ? 'up' : 'no'); u.textContent = r.re === 'Có' ? 'iPhone: chạy lại phím tắt' : 'Chỉ tải lại trang game';
       head.append(u);
       card.append(head);
       var n = document.createElement('p'); n.className = 'note'; n.textContent = r.note && r.note !== '—' ? r.note : 'Cải thiện nhỏ và sửa lỗi.';

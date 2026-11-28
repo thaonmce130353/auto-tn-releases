@@ -52,3 +52,14 @@ test('staging/ objects (admin builds, unreleased zips) are never read from R2 or
   const ok = await call('/tn-extension-latest.zip', env);
   assert.equal(ok.status, 200); assert.equal(await ok.text(), 'PKpublic');
 });
+
+test('HEAD reads only metadata; an R2 error is a retryable 503, not a crash', async () => {
+  const calls = [];
+  const env = { ZIPS: { head: async (k) => { calls.push('head ' + k); return { size: 6 }; }, get: async (k) => { calls.push('get ' + k); return { body: new Response('PKdata').body, size: 6 }; } }, ASSETS: assets };
+  const h = await call('/tn-extension-latest.zip', env, { method: 'HEAD' });
+  assert.equal(h.status, 200); assert.equal(h.headers.get('content-length'), '6'); assert.equal(await h.text(), '');
+  assert.deepEqual(calls, ['head tn-extension-latest.zip']);
+  const broken = { ZIPS: { get: async () => { throw new Error('r2 down'); } }, ASSETS: assets };
+  const r = await call('/VERSIONS.md', broken);
+  assert.equal(r.status, 503); assert.equal(r.headers.get('retry-after'), '60'); assert.equal(r.headers.get('cache-control'), 'no-store');
+});
